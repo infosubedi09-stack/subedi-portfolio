@@ -672,12 +672,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 parent: "This PC",
                 contents: {
                     "Best Award.JPG": { type: "file", fileType: "image", src: "images/This PC/Best Award.JPG" },
+                    "It's Me.JPG": { type: "file", fileType: "image", src: "images/This PC/It's Me.JPG" },
                     "My infographic image.jpeg": { type: "file", fileType: "image", src: "images/This PC/My infographic image.jpeg" },
-                    "My main image change background.JPG": { type: "file", fileType: "image", src: "images/This PC/My main image change background.JPG" },
-                    "My own.jpeg": { type: "file", fileType: "image", src: "images/This PC/My own.jpeg" },
+                    "Relax Me.jpeg": { type: "file", fileType: "image", src: "images/This PC/Relax Me.jpeg" },
                     "Trainer1.jpeg": { type: "file", fileType: "image", src: "images/This PC/Trainer1.jpeg" },
                     "Trainer2.jpeg": { type: "file", fileType: "image", src: "images/This PC/Trainer2.jpeg" },
-                    "pradip_subedi_resume_updated_TUSC.pdf": { type: "file", fileType: "pdf", src: "images/This PC/pradip_subedi_resume_updated_TUSC.pdf" }
+                    "pradip_subedi_resume.pdf": { type: "file", fileType: "pdf", src: "images/This PC/pradip_subedi_resume.pdf" }
                 }
             }
         };
