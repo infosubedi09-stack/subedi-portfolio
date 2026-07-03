@@ -1830,6 +1830,60 @@ h6 {
     display: none;
 }
 
+/* System Tray Live Visitor Counter */
+.system-tray-visitors {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background: rgba(0, 229, 255, 0.08);
+    border: 1px solid rgba(0, 229, 255, 0.25);
+    border-radius: var(--radius-md);
+    color: var(--accent-cyan);
+    font-size: 0.76rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.1);
+    user-select: none;
+}
+
+.system-tray-visitors:hover {
+    background: rgba(0, 229, 255, 0.18);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 16px rgba(0, 229, 255, 0.35);
+    transform: translateY(-1px);
+}
+
+.visitor-icon {
+    width: 15px;
+    height: 15px;
+    color: var(--accent-cyan);
+    flex-shrink: 0;
+}
+
+.visitor-pulse {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #00E5FF;
+    box-shadow: 0 0 8px #00E5FF;
+    animation: visitorPulseAnim 2s infinite ease-in-out;
+    flex-shrink: 0;
+}
+
+@keyframes visitorPulseAnim {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.35;
+        transform: scale(0.65);
+    }
+}
+
 .system-tray-wifi {
     color: var(--text-primary);
 }
@@ -2245,6 +2299,17 @@ h6 {
 
     .system-tray-wifi {
         display: none !important;
+    }
+
+    .system-tray-visitors {
+        padding: 2px 7px !important;
+        font-size: 0.68rem !important;
+        gap: 4px !important;
+    }
+
+    .system-tray-visitors .visitor-icon {
+        width: 13px !important;
+        height: 13px !important;
     }
 
     .system-clock-tray {
