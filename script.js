@@ -76,39 +76,38 @@ document.addEventListener('DOMContentLoaded', () => {
         const badgeEl = document.getElementById('visitor-counter-tray');
         if (!countEl || !badgeEl) return;
 
-        // Base realistic starting count
-        let baseVisits = parseInt(localStorage.getItem('portfolio_total_visits'), 10);
-        if (isNaN(baseVisits) || baseVisits < 1420) {
-            baseVisits = 1428;
+        // Retrieve stored local visits or default to 1
+        let localVisits = parseInt(localStorage.getItem('portfolio_real_visits'), 10);
+        if (isNaN(localVisits) || localVisits < 1) {
+            localVisits = 1;
         }
 
-        // Increment visit once per browser session
-        if (!sessionStorage.getItem('portfolio_session_counted')) {
-            baseVisits += 1;
-            localStorage.setItem('portfolio_total_visits', baseVisits);
-            sessionStorage.setItem('portfolio_session_counted', 'true');
+        // Increment local visit once per browser session
+        if (!sessionStorage.getItem('portfolio_live_session_counted')) {
+            localVisits += 1;
+            localStorage.setItem('portfolio_real_visits', localVisits);
+            sessionStorage.setItem('portfolio_live_session_counted', 'true');
         }
 
-        // Display formatted number
-        countEl.textContent = baseVisits.toLocaleString();
+        // Display local estimate while fetching live global count
+        countEl.textContent = localVisits.toLocaleString();
 
-        // Attempt live API increment with smooth fallback
-        fetch('https://api.counterapi.dev/v1/pradipsubedi_portfolio/visits/up')
+        // Fetch true global live count from API across all devices
+        fetch('https://api.counterapi.dev/v1/pradipsubedi_portfolio_live_v1/visits/up')
             .then(response => response.json())
             .then(data => {
                 if (data && typeof data.count === 'number' && data.count > 0) {
-                    const liveCount = Math.max(baseVisits, data.count + 1400);
-                    countEl.textContent = liveCount.toLocaleString();
-                    localStorage.setItem('portfolio_total_visits', liveCount);
+                    countEl.textContent = data.count.toLocaleString();
+                    localStorage.setItem('portfolio_real_visits', data.count);
                 }
             })
             .catch(() => {
-                // Silently fallback to localized session storage count if offline/blocked
+                // Keep local count if offline or API blocked
             });
 
         // Click interaction: show toast alert
         badgeEl.addEventListener('click', () => {
-            showToast(`👁️ Workstation Traffic: ${countEl.textContent} Total Profile Views`);
+            showToast(`👁️ Workstation Traffic: ${countEl.textContent} Total Unique Visits Globally`);
         });
     }
 
