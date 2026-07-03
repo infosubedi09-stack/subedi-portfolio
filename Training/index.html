@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7-Day Online AI Training Masterclass | Pradip Subedi</title>
+    <meta name="description"
+        content="Join the 7-Day Online AI Training Masterclass led by Pradip Subedi starting 2083.04.01 at 7:30 PM. Tailored for Students, Teachers, Content Creators, Researchers, and IT Professionals.">
+    <meta name="keywords"
+        content="AI Training, Generative AI, Pradip Subedi, Online Workshop, Prompt Engineering, AI for Educators, AI for Researchers, No Code Automate Development">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css?v=1.2">
+</head>
+
+<body>
+    <!-- Interactive Background Particles Canvas -->
+    <canvas id="ai-particles" aria-hidden="true"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
+    
+    <!-- Subtle Grid Pattern -->
+    <div class="bg-grid"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon">AI</div>
+                <span>PRADIP SUBEDI <span style="font-weight: 300; opacity: 0.8;">| Academy</span></span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#audiences">Who Should Attend</a></li>
+                <li><a href="#curriculum">7-Day Roadmap</a></li>
+                <li><a href="#facilitator">Facilitator</a></li>
+                <li><a href="#faqs">FAQs</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="../index.html" class="btn-back">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Portfolio
+                </a>
+                <a href="https://forms.gle/er1A3yuoY16GEYZU7" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                    Register Now
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="overview">
+        <div class="container">
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                <span>Live Online Training &bull; Starts 2083.04.01 at 7:30 PM</span>
+            </div>
+
+            <h1 class="hero-title">
+                Master <span class="gradient-text">Generative AI</span> & Supercharge Your Daily Workflow
+            </h1>
+
+            <p class="hero-subtitle">
+                An intensive <strong>7-Day Practical Online Training (2083.04.01 – 2083.04.07 | Daily at 7:30 PM)</strong> structured specifically for Students, Teachers, Content Creators, Researchers, and IT Professionals ready to unlock 10x productivity.
+            </p>
+
+            <div class="hero-cta-group">
+                <a href="https://forms.gle/er1A3yuoY16GEYZU7" target="_blank" rel="noopener noreferrer" class="btn-primary btn-large">
+                    🎯 Secure Your Spot (Google Form)
+                </a>
+                <a href="#curriculum" class="btn-secondary btn-large">
+                    Explore 7-Day Syllabus ↓
+                </a>
+            </div>
+
+            <!-- Countdown Timer Box -->
+            <div class="countdown-box">
+                <div class="countdown-header">⏳ Countdown to Training Start (2083.04.01 | 7:30 PM):</div>
+                <div class="countdown-grid">
+                    <div class="timer-card">
+                        <div class="timer-number" id="days">00</div>
+                        <div class="timer-label">Days</div>
+                    </div>
+                    <div class="timer-card">
+                        <div class="timer-number" id="hours">00</div>
+                        <div class="timer-label">Hours</div>
+                    </div>
+                    <div class="timer-card">
+                        <div class="timer-number" id="minutes">00</div>
+                        <div class="timer-label">Minutes</div>
+                    </div>
+                    <div class="timer-card">
+                        <div class="timer-number" id="seconds">00</div>
+                        <div class="timer-label">Seconds</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Target Audience Section -->
+    <section class="section-padding" id="audiences">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Tailored Tracks</span>
+                <h2 class="section-title">Who Is This Training For?</h2>
+                <p class="section-desc">
+                    Whether you are writing research papers, developing software, teaching students, or scaling content, this 7-day program equips you with practical, role-specific AI techniques.
+                </p>
+            </div>
+
+            <div class="audience-grid">
+                <!-- 1. Students -->
+                <div class="audience-card card-student">
+                    <div>
+                        <div class="card-icon-wrapper">🎓</div>
+                        <h3 class="card-title">Students</h3>
+                        <p class="card-desc">
+                            Transform how you study, research, and complete academic assignments while staying ethically compliant and boosting your academic performance.
+                        </p>
+                        <ul class="card-benefits">
+                            <li>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Master prompt engineering for study notes & concept synthesis</span>
+                            </li>
+                            <li>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Create presentation decks in minutes with AI assistants</span>
+                            </li>
+                            <li>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Prep for job interviews and build AI-enhanced resumes</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-tools">
+                        <span class="tools-label">Key Competencies:</span>
+                        <div class="tools-tags">
+                            <span class="tool-tag">Advanced LLMs</span>
+                            <span class="tool-tag">Semantic Research Tools</span>
+                            <span class="tool-tag">AI Presentation Builders</span>
+                            <span class="tool-tag">Smart Study Workflows</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Teachers & Educators -->
+                <div class="audience-card card-teacher">
+                    <div>
+                        <div class="card-icon-wrapper">👨‍🏫</div>
+                        <h3 class="card-title">Teachers & Educators</h3>
+                        <p class="card-desc">
+                            Automate administrative workloads, design interactive curricula, and create engaging classroom experiences without burning out.
+                        </p>
+                        <ul class="card-benefits">
+                            <li>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Generate customized lesson plans & evaluation rubrics instantly</span>
+                            </li>
+                            <li>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Automate quiz creation and interactive assessment pipelines</span>
+                            </li>
+                            <li>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Design personalized learning materials for diverse students</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-tools">
+                        <span class="tools-label">Key Competencies:</span>
+                        <div class="tools-tags">
+                            <span class="tool-tag">AI Pedagogical Assistants</span>
+                            <span class="tool-tag">Automated Assessment Tools</span>
+                            <span class="tool-tag">Interactive Curriculum Builders</span>
+                            <span class="tool-tag">Smart Grading Aids</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Content Creators -->
+                <div class="audience-card card-creator">
+                    <div>
+                        <div class="card-icon-wrapper">🎨</div>
+                        <h3 class="card-title">Content Creators</h3>
+                        <p class="card-desc">
+                            Scale your digital brand with cutting-edge AI image synthesis, compelling copywriting, automated voiceovers, and visual media production.
+                        </p>
+                        <ul class="card-benefits">
+                            <li>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Craft viral video scripts, creative hooks & high-converting ads</span>
+                            </li>
+                            <li>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Generate stunning visuals, custom graphics & digital art</span>
+                            </li>
+                            <li>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Produce natural voice synthesis and studio-grade multimedia</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-tools">
+                        <span class="tools-label">Key Competencies:</span>
+                        <div class="tools-tags">
+                            <span class="tool-tag">AI Visual Synthesis</span>
+                            <span class="tool-tag">Voice & Audio Generation</span>
+                            <span class="tool-tag">Smart Video Editing</span>
+                            <span class="tool-tag">Copywriting Frameworks</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Researchers -->
+                <div class="audience-card card-researcher">
+                    <div>
+                        <div class="card-icon-wrapper">🔬</div>
+                        <h3 class="card-title">Researchers</h3>
+                        <p class="card-desc">
+                            Accelerate your academic discoveries with AI engines that review literature, extract critical data, synthesize consensus, and structure papers.
+                        </p>
+                        <ul class="card-benefits">
+                            <li>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Conduct rapid semantic searches across millions of publications</span>
+                            </li>
+                            <li>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Extract statistical findings & verify academic consensus</span>
+                            </li>
+                            <li>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Streamline research structuring and ethical academic writing</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-tools">
+                        <span class="tools-label">Key Competencies:</span>
+                        <div class="tools-tags">
+                            <span class="tool-tag">Literature Synthesis AI</span>
+                            <span class="tool-tag">Semantic Citation Engines</span>
+                            <span class="tool-tag">Data Analysis Assistant</span>
+                            <span class="tool-tag">Research Structuring</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. IT Professionals -->
+                <div class="audience-card card-it">
+                    <div>
+                        <div class="card-icon-wrapper">💻</div>
+                        <h3 class="card-title">IT Professionals</h3>
+                        <p class="card-desc">
+                            Level up your engineering and systems career by mastering AI code generation, automated debugging, API integrations, and no-code automate development.
+                        </p>
+                        <ul class="card-benefits">
+                            <li>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Supercharge code generation, refactoring & documentation</span>
+                            </li>
+                            <li>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Build robust No-Code Automate Development workflows</span>
+                            </li>
+                            <li>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Integrate AI capabilities seamlessly into systems & applications</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-tools">
+                        <span class="tools-label">Key Competencies:</span>
+                        <div class="tools-tags">
+                            <span class="tool-tag">AI Coding Assistants</span>
+                            <span class="tool-tag">No-Code Automate Development</span>
+                            <span class="tool-tag">LLM API Integration</span>
+                            <span class="tool-tag">Automated Debugging</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7-Day Roadmap Section -->
+    <section class="section-padding" id="curriculum" style="background: rgba(8, 23, 48, 0.4);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Step-by-Step Curriculum</span>
+                <h2 class="section-title">What You Will Learn in <span class="gradient-text">7 Days</span></h2>
+                <p class="section-desc">Scheduled from <strong>2083.04.01 to 2083.04.07 (Daily at 7:30 PM)</strong>. Click each day below to expand and view the detailed syllabus covered during the live sessions.</p>
+            </div>
+
+            <div class="curriculum-list">
+                <!-- Day 1 -->
+                <div class="day-item">
+                    <div class="day-header">
+                        <div class="day-header-left">
+                            <span class="day-badge">Day 01</span>
+                            <span class="day-title">Foundations of Generative AI & Prompt Engineering Mastery</span>
+                        </div>
+                        <div class="day-toggle-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                    </div>
+                    <div class="day-body">
+                        <ul class="day-topics">
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Understanding Large Language Models (LLMs) and intelligent reasoning systems.</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Mastering structured prompt frameworks (Role-Task-Format, Context-Constraint-Goal).</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Eliminating hallucinations and ensuring high-precision, actionable AI outputs.</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Hands-on lab: Crafting custom instructions and domain-specific assistants.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Day 2 -->
+                <div class="day-item">
+                    <div class="day-header">
+                        <div class="day-header-left">
+                            <span class="day-badge">Day 02</span>
+                            <span class="day-title">AI for Academic Research & Rapid Information Synthesis</span>
+                        </div>
+                        <div class="day-toggle-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                    </div>
+                    <div class="day-body">
+                        <ul class="day-topics">
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Deep-dive into specialized semantic research and literature discovery engines.</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Extracting research methodologies and summarizing multi-document libraries.</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Ethical academic writing, proper citation styles, and analytical rigor.</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Advanced logical problem-solving and structured data extraction.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Day 3 -->
+                <div class="day-item">
+                    <div class="day-header">
+                        <div class="day-header-left">
+                            <span class="day-badge">Day 03</span>
+                            <span class="day-title">AI in Education: Transforming Teaching, Assessment & Curricula</span>
+                        </div>
+                        <div class="day-toggle-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                    </div>
+                    <div class="day-body">
+                        <ul class="day-topics">
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Designing interactive, customized lesson plans and curriculum roadmaps.</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Instant exam generation, evaluation rubrics, and constructive student feedback.</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Developing personalized learning paths to cater to diverse classroom needs.</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Fostering academic integrity and ethical AI usage among students.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Day 4 -->
+                <div class="day-item">
+                    <div class="day-header">
+                        <div class="day-header-left">
+                            <span class="day-badge">Day 04</span>
+                            <span class="day-title">Creative AI Studio: Visuals, Voice Generation & Digital Media</span>
+                        </div>
+                        <div class="day-toggle-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                    </div>
+                    <div class="day-body">
+                        <ul class="day-topics">
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Prompting state-of-the-art visual generation engines for high-impact graphics.</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Professional voice synthesis, audio design, and natural voiceover production.</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Automated short-form and long-form video editing workflows.</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Rapid creation of brand assets, marketing graphics, and digital presentations.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Day 5 -->
+                <div class="day-item">
+                    <div class="day-header">
+                        <div class="day-header-left">
+                            <span class="day-badge">Day 05</span>
+                            <span class="day-title">AI for IT Professionals: Coding Acceleration & Technical Workflows</span>
+                        </div>
+                        <div class="day-toggle-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                    </div>
+                    <div class="day-body">
+                        <ul class="day-topics">
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Supercharging code creation, refactoring, and documentation with intelligent coding tools.</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Automated debugging, syntax error resolution, and test suite generation.</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Integrating AI language models into software architectures and web apps.</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Database query generation, system scripting, and regular expression mastery.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Day 6 -->
+                <div class="day-item">
+                    <div class="day-header">
+                        <div class="day-header-left">
+                            <span class="day-badge">Day 06</span>
+                            <span class="day-title">No-Code Automate Development & Intelligent Workflows</span>
+                        </div>
+                        <div class="day-toggle-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                    </div>
+                    <div class="day-body">
+                        <ul class="day-topics">
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Mastering No-Code Automate Development to connect emails, spreadsheets, and databases.</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Designing end-to-end automated workflows without writing traditional code.</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Customizing AI assistants trained on your internal documents and knowledge bases.</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Streamlining personal tasks, content pipelines, and communication systems.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Day 7 -->
+                <div class="day-item">
+                    <div class="day-header">
+                        <div class="day-header-left">
+                            <span class="day-badge">Day 07</span>
+                            <span class="day-title">Capstone Project Showcase & Live Feedback Session</span>
+                        </div>
+                        <div class="day-toggle-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </div>
+                    </div>
+                    <div class="day-body">
+                        <ul class="day-topics">
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Live presentation of participant capstone projects and practical AI implementations.</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> In-depth interactive feedback session and expert review of participant workflows.</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Open Q&A Discussion Panel addressing real-world challenges and adoption strategies.</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Roadmapping continuous growth, career advancement, and networking.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilitator Profile Section -->
+    <section class="section-padding" id="facilitator">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Meet Your Instructor</span>
+                <h2 class="section-title">Led by an <span class="gradient-text">AI & IT Specialist</span></h2>
+            </div>
+
+            <div class="trainer-card">
+                <div class="trainer-img-wrapper">
+                    <img src="../images/Trainer1.jpeg" alt="Pradip Subedi - AI Facilitator & IT Head" class="trainer-img">
+                </div>
+                <div>
+                    <span class="trainer-role-tag">Lead Facilitator & Instructor</span>
+                    <h3 class="trainer-name">Pradip Subedi</h3>
+                    <p class="trainer-bio">
+                        An experienced IT Head, AI/ML Specialist, and SEO Digital Marketer with extensive background conducting hands-on technology workshops. Pradip combines rigorous technical expertise with intuitive teaching methodologies, empowering professionals, educators, and students to adopt artificial intelligence seamlessly.
+                    </p>
+                    <div class="trainer-credentials">
+                        <span class="cred-item">💡 MCA & IT Head</span>
+                        <span class="cred-item">🤖 Generative AI Specialist</span>
+                        <span class="cred-item">👨‍🏫 50+ Workshops Conducted</span>
+                        <span class="cred-item">⚡ No-Code Automate Expert</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section class="section-padding" id="faqs" style="background: rgba(8, 23, 48, 0.4);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Got Questions?</span>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>When does the training take place?</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        The 7-Day Online AI Training runs from <strong>2083.04.01 to 2083.04.07</strong> starting daily at <strong>7:30 PM</strong>. Sessions are conducted live online with dedicated interactive segments and Q&A.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I register and confirm my seat?</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        Simply click any of the "Register Now" buttons on this page to fill out our official Google Form. Once submitted, our team will verify your registration and send joining links directly to your registered email and contact number.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do I need prior programming or coding knowledge to attend?</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        No prior programming experience is required! The training emphasizes intuitive, practical applications, structured prompt engineering, and No-Code Automate Development accessible to everyone.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What happens on the final day of the workshop?</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        Day 7 features a dedicated Capstone Project Showcase and an interactive Live Feedback Session where participants present practical workflows and receive comprehensive guidance from the instructor.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="final-cta">
+                <h2 class="section-title" style="margin-bottom: 1.5rem;">Ready to Unlock Your <span class="gradient-gold">AI Superpowers</span>?</h2>
+                <p class="section-desc" style="max-width: 650px; margin: 0 auto 2.5rem;">
+                    Secure your place for the 7-Day Online Training (2083.04.01 – 2083.04.07 | Daily at 7:30 PM) and transform your workflow today.
+                </p>
+                <a href="https://forms.gle/er1A3yuoY16GEYZU7" target="_blank" rel="noopener noreferrer" class="btn-primary btn-large" style="font-size: 1.2rem; padding: 1.2rem 2.8rem;">
+                    🚀 Register Now on Google Form
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Pradip Subedi. All Rights Reserved. Designed for 7-Day AI Masterclass (2083.04.01 - 2083.04.07 | 7:30 PM).</p>
+            <p style="margin-top: 0.5rem;"><a href="../index.html" style="color: var(--accent-cyan); text-decoration: none;">&larr; Return to Interactive Portfolio</a></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js?v=1.2"></script>
+</body>
+
+</html>
