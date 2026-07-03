@@ -2300,7 +2300,7 @@ h6 {
 /* Progressive Enhancements for Extra Large Screens (min-width: 1600px) */
 @media (min-width: 1600px) {
     .desktop-shortcuts {
-        grid-template-columns: repeat(2, 130px);
+        grid-template-columns: repeat(1, 130px);
         grid-auto-rows: auto;
         grid-auto-flow: row;
         gap: 1rem 1.25rem;
@@ -2410,9 +2410,36 @@ h6 {
     }
 }
 
+@media (min-width: 1550px) and (min-height: 700px) {
+    .desktop-shortcuts {
+        grid-template-columns: repeat(1, 110px);
+        grid-auto-rows: auto;
+        grid-auto-flow: row;
+        gap: 10px;
+    }
+
+    .desktop-shortcut {
+        width: 105px !important;
+        min-height: 78px !important;
+        padding: 6px 4px !important;
+    }
+
+    .shortcut-icon {
+        width: 38px !important;
+        height: 38px !important;
+        margin-bottom: 4px !important;
+    }
+
+    .shortcut-label {
+        font-size: 0.74rem !important;
+        padding: 3px 5px !important;
+        margin-top: 3px !important;
+    }
+}
+
 @media (min-width: 1600px) and (min-height: 850px) {
     .desktop-shortcuts {
-        grid-template-columns: repeat(2, 120px);
+        grid-template-columns: repeat(1, 120px);
         grid-auto-rows: auto;
         grid-auto-flow: row;
         gap: 12px;
