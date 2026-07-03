@@ -567,11 +567,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function initTypingEffect() {
         const customRoles = [
-            "a AI Content Creator",
+            "an AI Content Creator",
+            "a Digital Marketer",
             "a Blogger",
-            "a Computer System Trainer",
+            "a Computer Systems Trainer",
             "a Data Science & AI Enthusiast",
-            "a Office Administrator",
+            "an Office Administrator",
             "a Google Products & Services Expert"
         ];
 
