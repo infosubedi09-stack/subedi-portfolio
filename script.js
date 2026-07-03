@@ -566,23 +566,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function initTypingEffect() {
-        // Run typewriter on the desktop background profile widget
-        runTypewriter('widget-typed-role', [
-            "a Data Science & AI",
-            "an AI Content Creator",
-            "a Digital Marketing",
-            "an SEO Blogging",
-            "a Computer Systems Training"
-        ]);
+        const customRoles = [
+            "a AI Content Creator",
+            "a Blogger",
+            "a Computer System Trainer",
+            "a Data Science & AI Enthusiast",
+            "a Office Administrator",
+            "a Google Products & Services Expert"
+        ];
 
-        // Run typewriter inside the About Me window profile card (stating "and I am [role] expert")
-        runTypewriter('typed-role', [
-            "a Data Science & AI",
-            "an AI Content Creator",
-            "a Digital Marketing",
-            "an SEO Blogging",
-            "a Computer Systems Training"
-        ]);
+        // Run typewriter on the desktop background profile widget
+        runTypewriter('widget-typed-role', customRoles);
+
+        // Run typewriter inside the About Me window profile card
+        runTypewriter('typed-role', customRoles);
     }
 
     /* ==========================================================================
