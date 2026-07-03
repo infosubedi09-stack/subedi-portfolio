@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pradip Subedi | Desktop OS Portfolio</title>
+    <meta name="description"
+        content="Interactive Windows 11 Desktop GUI portfolio of Pradip Subedi, IT Head, AI/ML Specialist, and SEO Digital Marketer.">
+    <meta name="keywords"
+        content="Pradip Subedi, IT Head, MCA, AI, Machine Learning, Digital Marketing, SEO, Desktop Portfolio">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css?v=2.4">
+</head>
+
+<body class="dark-theme">
+
+    <!-- Desktop Environment Wrapper -->
+    <div class="desktop" id="desktop-canvas">
+
+        <!-- Wallpaper Gradient (Canvas Particles Overlay) -->
+        <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+        <!-- Skip to content for keyboard accessibility -->
+        <a href="#taskbar" class="skip-to-content">Skip to Taskbar</a>
+
+        <!-- Desktop Grid Layout -->
+        <div class="desktop-layout">
+
+            <!-- Left: Desktop Shortcuts -->
+            <div class="desktop-shortcuts" role="navigation" aria-label="Desktop Shortcuts">
+
+                <button class="desktop-shortcut" data-window="thispc-window" aria-label="Open This PC Explorer">
+                    <div class="shortcut-icon icon-thispc">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <span class="shortcut-label">This PC</span>
+                </button>
+
+                <button class="desktop-shortcut" data-window="about-window" aria-label="Open About Me Program">
+                    <div class="shortcut-icon icon-user-avatar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <span class="shortcut-label">About Me</span>
+                </button>
+
+                <button class="desktop-shortcut" data-window="experience-window"
+                    aria-label="Open Experience and Education Program">
+                    <div class="shortcut-icon icon-experience">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                    </div>
+                    <span class="shortcut-label">Experience</span>
+                </button>
+
+                <button class="desktop-shortcut" data-window="projects-window" aria-label="Open Web Projects Program">
+                    <div class="shortcut-icon icon-projects">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                    </div>
+                    <span class="shortcut-label">Projects</span>
+                </button>
+
+                <button class="desktop-shortcut" data-window="publications-window"
+                    aria-label="Open Publications and Research Document">
+                    <div class="shortcut-icon icon-publications">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                    </div>
+                    <span class="shortcut-label">Publications</span>
+                </button>
+
+                <button class="desktop-shortcut" data-window="trainings-window"
+                    aria-label="Open Trainings and Seminars Archive">
+                    <div class="shortcut-icon icon-trainings">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="8" r="7"></circle>
+                            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                        </svg>
+                    </div>
+                    <span class="shortcut-label">Trainings</span>
+                </button>
+
+                <button class="desktop-shortcut" data-window="contact-window" aria-label="Open Contact Program">
+                    <div class="shortcut-icon icon-contact">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </div>
+                    <span class="shortcut-label">Contact Me</span>
+                </button>
+
+            </div>
+
+            <!-- Right: Interactive Desktop Profile Widget (Matches User Reference) -->
+            <div class="desktop-profile-widget" aria-label="Profile Info Widget">
+                <div class="widget-text-panel">
+                    <div class="widget-badge">WELCOME TO MY DIGITAL WORKSPACE</div>
+                    <h1 class="widget-title">Hi, I'm <span class="accent-title">Pradip Subedi</span></h1>
+
+                    <div class="widget-typing-box">
+                        <span>I am </span><span id="widget-typed-role" class="cyan-text"
+                            style="color: var(--accent-cyan);"></span><span class="typed-cursor">|</span><span>
+                            Expert</span>
+                    </div>
+
+                    <p class="widget-desc">
+                        An IT expert with a Master of Computer Applications (MCA) in AI, Cloud, and Data Science. I
+                        bridge the gap between institutional technology infrastructure, advanced machine learning
+                        research, and modern SEO growth hacking.
+                    </p>
+                </div>
+
+                <div class="widget-photo-panel">
+                    <div class="widget-avatar-frame">
+                        <img src="images/My main transparent.png" alt="Pradip Subedi" class="widget-avatar-img">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Desktop Windows Container -->
+        <div class="desktop-windows" id="window-layer">
+
+            <!-- 0. THIS PC WINDOW -->
+            <div class="window glass-card" id="thispc-window" role="dialog" aria-labelledby="thispc-title"
+                style="top: 8%; left: 10%; width: 780px; height: 520px;" hidden>
+                <div class="window-header">
+                    <div class="window-title-area">
+                        <svg class="window-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2"
+                            style="width: 14px; height: 14px; margin-right: 6px; display: inline-block; vertical-align: middle;">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                        <span id="thispc-title" class="window-title-text">This PC</span>
+                    </div>
+                    <div class="window-controls">
+                        <button class="win-btn win-min" aria-label="Minimize Window" title="Minimize">&#9472;</button>
+                        <button class="win-btn win-max" aria-label="Maximize Window" title="Maximize">&#9633;</button>
+                        <button class="win-btn win-close" aria-label="Close Window" title="Close">&times;</button>
+                    </div>
+                </div>
+                <div class="window-body no-padding"
+                    style="display: flex; flex-direction: column; height: calc(100% - 38px); overflow: hidden;">
+                    <!-- Explorer Toolbar -->
+                    <div class="explorer-toolbar">
+                        <div class="explorer-nav-buttons">
+                            <button class="explorer-nav-btn" id="explorer-back-btn" disabled title="Go Back">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    style="width: 14px; height: 14px;">
+                                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                                    <polyline points="12 19 5 12 12 5"></polyline>
+                                </svg>
+                            </button>
+                            <button class="explorer-nav-btn" id="explorer-up-btn" disabled title="Go Up One Level">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                    style="width: 14px; height: 14px;">
+                                    <line x1="12" y1="19" x2="12" y2="5"></line>
+                                    <polyline points="5 12 12 5 19 12"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="explorer-address-bar">
+                            <svg class="address-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" style="width: 14px; height: 14px;">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                <line x1="8" y1="21" x2="16" y2="21"></line>
+                                <line x1="12" y1="17" x2="12" y2="21"></line>
+                            </svg>
+                            <span id="explorer-current-path">This PC</span>
+                        </div>
+                    </div>
+
+                    <!-- Explorer Container -->
+                    <div class="explorer-container"
+                        style="display: flex; flex: 1; height: calc(100% - 45px); overflow: hidden;">
+                        <div class="explorer-sidebar">
+                            <div class="sidebar-section">
+                                <div class="sidebar-title">Quick Access</div>
+                                <button class="sidebar-item active" data-path="This PC">
+                                    <span class="sidebar-icon">💻</span> <span class="sidebar-text">This PC</span>
+                                </button>
+                            </div>
+                            <div class="sidebar-section">
+                                <div class="sidebar-title">Devices and Drives</div>
+                                <button class="sidebar-item" data-path="This PC/C:">
+                                    <span class="sidebar-icon">💽</span> <span class="sidebar-text">Local Disk
+                                        (C:)</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Main explorer contents grid -->
+                        <div class="explorer-main" id="explorer-files-grid">
+                            <!-- Populated dynamically by script.js -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1. ABOUT WINDOW -->
+            <div class="window glass-card" id="about-window" role="dialog" aria-labelledby="about-title"
+                style="top: 12%; left: 14%; width: 750px; height: 500px;" hidden>
+                <div class="window-header">
+                    <div class="window-title-area">
+                        <svg class="window-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <span id="about-title" class="window-title-text">About Me</span>
+                    </div>
+                    <div class="window-controls">
+                        <button class="win-btn win-min" aria-label="Minimize Window" title="Minimize">&#9472;</button>
+                        <button class="win-btn win-max" aria-label="Maximize Window" title="Maximize">&#9633;</button>
+                        <button class="win-btn win-close" aria-label="Close Window" title="Close">&times;</button>
+                    </div>
+                </div>
+                <div class="window-body">
+                    <div class="window-content grid-2-window">
+
+                        <!-- Left Panel: Profile Photo and Details -->
+                        <div class="content-left-panel">
+                            <div class="window-avatar-frame">
+                                <img src="images/My main transparent.png" alt="Pradip Subedi Portrait"
+                                    class="window-avatar-img">
+                            </div>
+                            <h2 class="window-profile-name"
+                                style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">Hi, I am Pradip
+                                Subedi</h2>
+                            <div class="window-profile-typing"
+                                style="font-size: 0.82rem; margin-top: 0.4rem; font-weight: 600; min-height: 20px; font-family: var(--font-heading); color: var(--text-secondary);">
+                                <span>I am </span><span id="typed-role" class="accent-text"
+                                    style="color: var(--accent-cyan);"></span><span class="typed-cursor">|</span><span>
+                                    Expert</span>
+                            </div>
+
+                            <div class="window-quick-details">
+                                <p><strong>Location:</strong> Gaindakot, Nawalpur, Nepal</p>
+                                <p><strong>DOB:</strong> 12th Jan 1994</p>
+                                <p><strong>Role Type:</strong> Permanent Govt. Staff (TU)</p>
+                            </div>
+                        </div>
+
+                        <!-- Right Panel: Bio and Skills -->
+                        <div class="content-right-panel">
+                            <h4 class="window-panel-header">Executive Summary</h4>
+                            <p class="window-panel-text">
+                                Over 10 years of hands-on experience in academic IT operations, G-Suite integrations,
+                                and advanced technical support at Tribhuvan University campuses. Bridging enterprise
+                                administration with research credentials (MCA Distinction focus on AI/ML and Data
+                                Science) and digital marketing strategies.
+                            </p>
+
+                            <!-- Skills Tabs Component inside Window -->
+                            <div class="skills-tab-component">
+                                <div class="tabs-header" role="tablist" aria-label="Skills Groups">
+                                    <button class="tab-btn active" role="tab" aria-selected="true"
+                                        aria-controls="w-skills-core" id="w-tab-core">Core</button>
+                                    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="w-skills-ai"
+                                        id="w-tab-ai">AI & ML</button>
+                                    <button class="tab-btn" role="tab" aria-selected="false"
+                                        aria-controls="w-skills-marketing" id="w-tab-marketing">SEO & Ads</button>
+                                    <button class="tab-btn" role="tab" aria-selected="false"
+                                        aria-controls="w-skills-infra" id="w-tab-infra">Admin & Sys</button>
+                                </div>
+
+                                <div class="tab-content-wrapper">
+                                    <div class="tab-content active" id="w-skills-core" role="tabpanel"
+                                        aria-labelledby="w-tab-core">
+                                        <ul class="skills-list">
+                                            <li><span>JavaScript / HTML5 / CSS3</span>
+                                                <div class="bar-fill" style="width: 90%;"></div>
+                                            </li>
+                                            <li><span>Python Programming</span>
+                                                <div class="bar-fill" style="width: 80%;"></div>
+                                            </li>
+                                            <li><span>PHP / WordPress Development</span>
+                                                <div class="bar-fill" style="width: 85%;"></div>
+                                            </li>
+                                            <li><span>MySQL Databases</span>
+                                                <div class="bar-fill" style="width: 80%;"></div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-content" id="w-skills-ai" role="tabpanel" aria-labelledby="w-tab-ai"
+                                        hidden>
+                                        <ul class="skills-list">
+                                            <li><span>Generative AI Tools</span>
+                                                <div class="bar-fill" style="width: 90%;"></div>
+                                            </li>
+                                            <li><span>AI Content Creation & Prompt Engineering</span>
+                                                <div class="bar-fill" style="width: 92%;"></div>
+                                            </li>
+                                            <li><span>Machine Learning Systems</span>
+                                                <div class="bar-fill" style="width: 75%;"></div>
+                                            </li>
+                                            <li><span>ARIMA Forecasting Models</span>
+                                                <div class="bar-fill" style="width: 85%;"></div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-content" id="w-skills-marketing" role="tabpanel"
+                                        aria-labelledby="w-tab-marketing" hidden>
+                                        <ul class="skills-list">
+                                            <li><span>Blogging & Keywords Research</span>
+                                                <div class="bar-fill" style="width: 95%;"></div>
+                                            </li>
+                                            <li><span>On-page & Off-page SEO Strategy</span>
+                                                <div class="bar-fill" style="width: 90%;"></div>
+                                            </li>
+                                            <li><span>Facebook & Meta PPC Ad Campaigns</span>
+                                                <div class="bar-fill" style="width: 85%;"></div>
+                                            </li>
+                                            <li><span>Google AdWords (SEM)</span>
+                                                <div class="bar-fill" style="width: 80%;"></div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-content" id="w-skills-infra" role="tabpanel"
+                                        aria-labelledby="w-tab-infra" hidden>
+                                        <ul class="skills-list">
+                                            <li><span>Google Products and Services</span>
+                                                <div class="bar-fill" style="width: 95%;"></div>
+                                            </li>
+                                            <li><span>MS Office (Word, Excel, PowerPoint)</span>
+                                                <div class="bar-fill" style="width: 95%;"></div>
+                                            </li>
+                                            <li><span>SysAdmin (Workspace / G-Suite)</span>
+                                                <div class="bar-fill" style="width: 90%;"></div>
+                                            </li>
+                                            <li><span>CCNA / Networking / AWS</span>
+                                                <div class="bar-fill" style="width: 80%;"></div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. EXPERIENCE & EDUCATION WINDOW -->
+            <div class="window glass-card" id="experience-window" role="dialog" aria-labelledby="exp-title"
+                style="top: 12%; left: 15%; width: 800px; height: 520px;" hidden>
+                <div class="window-header">
+                    <div class="window-title-area">
+                        <svg class="window-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                        <span id="exp-title" class="window-title-text">Work Experience</span>
+                    </div>
+                    <div class="window-controls">
+                        <button class="win-btn win-min" aria-label="Minimize Window">&#9472;</button>
+                        <button class="win-btn win-max" aria-label="Maximize Window">&#9633;</button>
+                        <button class="win-btn win-close" aria-label="Close Window">&times;</button>
+                    </div>
+                </div>
+                <div class="window-body">
+                    <div class="window-content">
+
+                        <!-- Toggle structure inside window -->
+                        <div class="timeline-toggle-wrapper" style="margin-bottom: 2rem;">
+                            <button id="btn-exp" class="toggle-switch-btn active"
+                                aria-controls="win-timeline-container">Work History</button>
+                            <button id="btn-edu" class="toggle-switch-btn"
+                                aria-controls="win-timeline-container">Education Path</button>
+                        </div>
+
+                        <div id="win-timeline-container" class="timeline-container" style="padding-bottom: 2rem;">
+
+                            <!-- Work Experience Timeline -->
+                            <div id="timeline-exp" class="timeline-group active-timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <span class="time-period">Jan 16, 2021 – Present</span>
+                                        <h4 class="role-title">Head Technical Assistant (IT)</h4>
+                                        <h5 class="company-name">Birendra Multiple Campus, Bharatpur | Tribhuvan
+                                            University</h5>
+                                        <ul class="timeline-bullets">
+                                            <li>Orchestrating campus website systems, EMIS pipelines, and digital
+                                                administrative operations.</li>
+                                            <li>Directing institutional Google Suite administrative structures,
+                                                servicing thousands of faculty and students.</li>
+                                            <li>Spearheading QAA SAT EMIS metrics auditing and compiling technical
+                                                reports.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <span class="time-period">July 1, 2016 – Jan 15, 2021</span>
+                                        <h4 class="role-title">Head Assistant (IT)</h4>
+                                        <h5 class="company-name">Institute of Forestry, Pokhara Campus | Tribhuvan
+                                            University</h5>
+                                        <ul class="timeline-bullets">
+                                            <li>Supervised networking channels, portal administration on Coursera, and
+                                                campus publications.</li>
+                                            <li>Provided technical audits and infrastructure upgrades to active computer
+                                                systems.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <span class="time-period">Jan 3, 2015 – Present</span>
+                                        <h4 class="role-title">Digital Marketing & SEO Consultant</h4>
+                                        <h5 class="company-name">Salute Gorkha, Arbitrary Group, casino & hospitality
+                                            clients</h5>
+                                        <ul class="timeline-bullets">
+                                            <li>Managing Meta, YouTube, and Google Adwords performance ad campaigns.
+                                            </li>
+                                            <li>Conducting search audits, keywords intelligence maps, and local search
+                                                rankings.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Education Timeline -->
+                            <div id="timeline-edu" class="timeline-group" hidden>
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <span class="time-period">2022 – 2024</span>
+                                        <h4 class="role-title">Master of Computer Applications (MCA)</h4>
+                                        <h5 class="company-name">IGNOU | First Division with Distinction</h5>
+                                        <p class="timeline-text">Concentration: Data Science, Cloud Computing,
+                                            Artificial Intelligence, and Machine Learning.</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <span class="time-period">2013 – 2015</span>
+                                        <h4 class="role-title">B.Sc. Information Technology</h4>
+                                        <h5 class="company-name">Uttaranchal Institute of Management (HNB Garhwal
+                                            University), India | Distinction</h5>
+                                        <p class="timeline-text">Core elements: Database architectures, Web scripting,
+                                            OOP, Software Engineering.</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <span class="time-period">2009 – 2011</span>
+                                        <h4 class="role-title">Intermediate in Management with Computer Science</h4>
+                                        <h5 class="company-name">Oxford Higher Secondary School, Nepal</h5>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. PROJECTS WINDOW -->
+            <div class="window glass-card" id="projects-window" role="dialog" aria-labelledby="proj-title"
+                style="top: 18%; left: 26%; width: 780px; height: 500px;" hidden>
+                <div class="window-header">
+                    <div class="window-title-area">
+                        <svg class="window-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                        <span id="proj-title" class="window-title-text">Projects</span>
+                    </div>
+                    <div class="window-controls">
+                        <button class="win-btn win-min" aria-label="Minimize Window">&#9472;</button>
+                        <button class="win-btn win-max" aria-label="Maximize Window">&#9633;</button>
+                        <button class="win-btn win-close" aria-label="Close Window">&times;</button>
+                    </div>
+                </div>
+                <div class="window-body">
+                    <div class="window-content">
+                        <div class="grid-2 gap-2" style="padding-bottom: 2rem;">
+
+                            <!-- Card 1: Digital Marketing Portfolio -->
+                            <div class="project-card glass-card">
+                                <div class="project-header">
+                                    <span class="project-type">Digital Marketing Portfolio</span>
+                                    <span class="project-status">Active Campaigns</span>
+                                </div>
+                                <h4 class="project-title">Client Performance Marketing</h4>
+                                <p class="project-description" style="font-size: 0.84rem; margin-bottom: 0.5rem;">
+                                    Strategic pay-per-click ad planning, budget allocation, and target audience mapping
+                                    across search & social channels for:
+                                </p>
+                                <ul
+                                    style="margin: 0.25rem 0 1.25rem 1.15rem; font-size: 0.8rem; color: var(--text-secondary); line-height: 1.55; list-style-type: disc;">
+                                    <li><strong>The Arbitrary Group</strong></li>
+                                    <li><strong>Salute Gorkha Training Center</strong></li>
+                                    <li><strong>The Millionaires Club & Casino</strong></li>
+                                    <li><strong>Durbar Café Music Lounge</strong></li>
+                                </ul>
+                                <div class="project-tags"
+                                    style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 0.4rem;">
+                                    <span class="tag">Facebook Advertisement</span>
+                                    <span class="tag">YouTube Advertisement</span>
+                                    <span class="tag">Google AdWords</span>
+                                </div>
+                            </div>
+
+                            <!-- Card 2: Blogging & SEO Portfolio -->
+                            <div class="project-card glass-card">
+                                <div class="project-header">
+                                    <span class="project-type">Blogging & SEO Portfolio</span>
+                                    <a href="https://www.gowithevs.com/" target="_blank" class="project-link"
+                                        aria-label="Visit Go with EVs (opens in a new tab)">
+                                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <h4 class="project-title">Go with EVs (gowithevs.com)</h4>
+                                <p class="project-description" style="font-size: 0.84rem; margin-bottom: 0.5rem;">
+                                    Managing EV specs directory, organic traffic indexing, and structured schema
+                                    implementation leveraging search engine maps:
+                                </p>
+                                <ul
+                                    style="margin: 0.25rem 0 1.25rem 1.15rem; font-size: 0.8rem; color: var(--text-secondary); line-height: 1.55; list-style-type: disc;">
+                                    <li><strong>Keywords Research</strong> (intent targeting, semantic search planning)
+                                    </li>
+                                    <li><strong>Search Engine Optimization (SEO)</strong> (technical audits, visibility
+                                        indexing)</li>
+                                </ul>
+                                <div class="project-tags"
+                                    style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 0.4rem;">
+                                    <span class="tag">Blogging Portal</span>
+                                    <span class="tag">Keywords Research</span>
+                                    <span class="tag">SEO Optimization</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. PUBLICATIONS WINDOW -->
+            <div class="window glass-card" id="publications-window" role="dialog" aria-labelledby="pub-title"
+                style="top: 6%; left: 6%; width: 800px; height: 500px;" hidden>
+                <div class="window-header">
+                    <div class="window-title-area">
+                        <svg class="window-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                        <span id="pub-title" class="window-title-text">Publications</span>
+                    </div>
+                    <div class="window-controls">
+                        <button class="win-btn win-min" aria-label="Minimize Window">&#9472;</button>
+                        <button class="win-btn win-max" aria-label="Maximize Window">&#9633;</button>
+                        <button class="win-btn win-close" aria-label="Close Window">&times;</button>
+                    </div>
+                </div>
+                <div class="window-body">
+                    <div class="window-content" style="padding-bottom: 2rem;">
+                        <div class="timeline-container" style="padding-left: 0; border: none;">
+
+                            <!-- Paper 1 -->
+                            <div class="research-card glass-card" style="margin-bottom: 1.5rem;">
+                                <div class="project-header">
+                                    <span class="research-label">International Journal (2025)</span>
+                                    <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=JycIfoEAAAAJ&citation_for_view=JycIfoEAAAAJ:u-x6o8ySG0sC"
+                                        target="_blank" class="project-link"
+                                        aria-label="Read paper on Google Scholar (opens in new tab)">
+                                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <h4 class="research-title">"Can risk perception moderate the relationship between
+                                    financial literacy and investment decision: An empirical study among the Nepal
+                                    insurance industry?"</h4>
+                                <p class="research-authors"><strong>Authors:</strong> Madhusudan Lamichhane, Pradip
+                                    Subedi</p>
+                                <p class="research-publisher"><em>LEADER: International Journal of Business
+                                        Management</em>, Vol. 13, No. 1, pp. 53–66</p>
+                            </div>
+
+                            <!-- Paper 2 -->
+                            <div class="research-card glass-card" style="margin-bottom: 1.5rem;">
+                                <div class="project-header">
+                                    <span class="research-label">Cybersecurity Preprint (2025)</span>
+                                    <a href="https://europepmc.org/article/ppr/ppr1115083" target="_blank"
+                                        class="project-link"
+                                        aria-label="Read preprint on Europe PMC (opens in new tab)">
+                                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <h4 class="research-title">"RealPhish: An Algorithm for Real-Time Email Phishing
+                                    Detection"</h4>
+                                <p class="research-authors"><strong>Authors:</strong> Devendra Chapagain, Naresh
+                                    Kshetri, Bishnu Bhusal, Pradip Subedi</p>
+                                <p class="research-publisher">Preprints.org, DOI: 10.20944/preprints202511.0218.v1</p>
+                            </div>
+
+                            <!-- Paper 3 -->
+                            <div class="research-card glass-card" style="margin-bottom: 1.5rem;">
+                                <div class="project-header">
+                                    <span class="research-label">Book Chapter (2025)</span>
+                                    <a href="https://www.igi-global.com/chapter/emerging-trends-and-real-life-applications-of-edge-generative-ai/410661"
+                                        target="_blank" class="project-link"
+                                        aria-label="Read book chapter on IGI Global (opens in new tab)">
+                                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2">
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                            <polyline points="15 3 21 3 21 9"></polyline>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <h4 class="research-title">"Emerging Trends and Real-Life Applications of Edge
+                                    Generative AI"</h4>
+                                <p class="research-authors"><strong>Authors:</strong> Pradip Subedi, Devendra Chapagain,
+                                    Sushrut Rimal, Mandeep Pokharel</p>
+                                <p class="research-publisher">IGI Global, pp. 143-178, DOI:
+                                    10.4018/979-8-3373-7340-9.ch005</p>
+                            </div>
+
+                            <!-- Paper 4 -->
+                            <div class="research-card glass-card" style="margin-bottom: 1.5rem;">
+                                <span class="research-label">Book Chapter (In Progress)</span>
+                                <h4 class="research-title">"BlockSmartGov: Blockchain-based Smart Contracts for Policy
+                                    Enforcement and Automated Cybersecurity Governance"</h4>
+                                <p class="research-authors"><strong>Authors:</strong> Pradip Subedi</p>
+                                <p class="research-publisher">IGI Global Publishing</p>
+                            </div>
+
+                            <!-- Paper 5 -->
+                            <div class="research-card glass-card" style="margin-bottom: 1.5rem;">
+                                <span class="research-label">International Conference Paper (2024)</span>
+                                <h4 class="research-title">"Forecasting US Dollar Exchange Rates in Nepal: An ARIMA
+                                    Approach"</h4>
+                                <p class="research-authors"><strong>Authors:</strong> Sharad Chandra Kafle, Pradip
+                                    Subedi</p>
+                                <p class="research-publisher">Conference on Emerging Technologies & Sustainable
+                                    Innovations, India</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. TRAININGS WINDOW -->
+            <div class="window glass-card" id="trainings-window" role="dialog" aria-labelledby="train-title"
+                style="top: 10%; left: 24%; width: 750px; height: 500px;" hidden>
+                <div class="window-header">
+                    <div class="window-title-area">
+                        <svg class="window-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="8" r="7"></circle>
+                            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                        </svg>
+                        <span id="train-title" class="window-title-text">Trainings</span>
+                    </div>
+                    <div class="window-controls">
+                        <button class="win-btn win-min" aria-label="Minimize Window">&#9472;</button>
+                        <button class="win-btn win-max" aria-label="Maximize Window">&#9633;</button>
+                        <button class="win-btn win-close" aria-label="Close Window">&times;</button>
+                    </div>
+                </div>
+                <div class="window-body">
+                    <div class="window-content" style="padding-bottom: 2rem;">
+
+                        <!-- Single Photo Spotlight -->
+                        <div class="training-spotlight-card glass-card" style="margin-bottom: 2rem;">
+                            <div class="gallery-media-container"
+                                style="height: 200px; cursor: pointer; position: relative;">
+                                <img src="images/Trainer1.jpeg" alt="Pradip Subedi computer trainer instruction"
+                                    class="gallery-img zoomable-image">
+                                <div class="gallery-item-overlay"><span>Click to Zoom</span></div>
+                            </div>
+                            <div class="gallery-item-caption" style="padding: 1rem 0 0;">
+                                <h4 style="font-size: 1.1rem; margin-bottom: 0.25rem;">IT Trainer & AI Facilitator</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary);">Directing computer
+                                    literacy, academic tools optimization, and Generative AI workshops.</p>
+                            </div>
+                        </div>
+
+                        <!-- 16-item Trainings Grid -->
+                        <h4 class="trainings-list-title"
+                            style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--accent-cyan);">
+                            PARTICIPATION/TRAINER ON TRAININGS/WORKSHOPS/SEMINARS/</h4>
+                        <div class="trainings-grid-list-os">
+
+                            <div class="badge-item">
+                                <span class="badge-date">Jun 2026</span>
+                                <p class="badge-title">Computer Training for BIMC Staffs (Trainer)</p>
+                            </div>
+                            <div class="badge-item">
+                                <span class="badge-date">Apr 2025</span>
+                                <p class="badge-title">AI/ML using Generative AI for Beginners</p>
+                            </div>
+                            <div class="badge-item">
+                                <span class="badge-date">Dec 2024</span>
+                                <p class="badge-title">Advanced Artificial Intelligence Tools</p>
+                            </div>
+                            <div class="badge-item">
+                                <span class="badge-date">Sep-Nov 2024</span>
+                                <p class="badge-title">Data Science with Python (3 Months)</p>
+                            </div>
+                            <div class="badge-item">
+                                <span class="badge-date">Apr-May 2024</span>
+                                <p class="badge-title">Generative AI in Modern Research (FDP)</p>
+                            </div>
+                            <div class="badge-item">
+                                <span class="badge-date">Aug 2023</span>
+                                <p class="badge-title">AWS Cloud Practitioner Certification</p>
+                            </div>
+                            <div class="badge-item">
+                                <span class="badge-date">Aug 2023</span>
+                                <p class="badge-title">Admin Level Training of Integrated Website</p>
+                            </div>
+                            <div class="badge-item">
+                                <span class="badge-date">2023</span>
+                                <p class="badge-title">GIT and GITHUB Workshop (Instructor)</p>
+                            </div>
+                            <div class="badge-item">
+                                <span class="badge-date">Jan 2022</span>
+                                <p class="badge-title">Induction Training on IT & Computer Systems</p>
+                            </div>
+                            <div class="badge-item">
+                                <span class="badge-date">Dec 2021</span>
+                                <p class="badge-title">Digital Library Management Training</p>
+                            </div>
+                            <div class="badge-item">
+                                <span class="badge-date">2019-2020</span>
+                                <p class="badge-title">Online Class Facilitations (Trainer)</p>
+                            </div>
+                            <div class="badge-item">
+                                <span class="badge-date">2019-2020</span>
+                                <p class="badge-title">IT Coordinator of Online Examinations</p>
+                            </div>
+                            <div class="badge-item">
+                                <span class="badge-date">Dec 2018-Jan 2019</span>
+                                <p class="badge-title">Advanced Networking Training</p>
+                            </div>
+                            <div class="badge-item">
+                                <span class="badge-date">Apr 2018</span>
+                                <p class="badge-title">GPS and Arc GIS Training (Trainer)</p>
+                            </div>
+                            <div class="badge-item">
+                                <span class="badge-date">Feb-Apr 2015</span>
+                                <p class="badge-title">Web Development Training (6 Months)</p>
+                            </div>
+                            <div class="badge-item">
+                                <span class="badge-date">2012-2013</span>
+                                <p class="badge-title">Computer Hardware & Networking Training</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. CONTACT WINDOW -->
+            <div class="window glass-card" id="contact-window" role="dialog" aria-labelledby="con-title"
+                style="top: 15%; left: 25%; width: 750px; height: 480px;" hidden>
+                <div class="window-header">
+                    <div class="window-title-area">
+                        <svg class="window-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <span id="con-title" class="window-title-text">Contact Me</span>
+                    </div>
+                    <div class="window-controls">
+                        <button class="win-btn win-min" aria-label="Minimize Window">&#9472;</button>
+                        <button class="win-btn win-max" aria-label="Maximize Window">&#9633;</button>
+                        <button class="win-btn win-close" aria-label="Close Window">&times;</button>
+                    </div>
+                </div>
+                <div class="window-body">
+                    <div class="window-content grid-2-window">
+
+                        <!-- Contact Info Left -->
+                        <div class="contact-info-list" style="padding-bottom: 2rem;">
+                            <h4 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--accent-cyan);">Contact Info
+                            </h4>
+                            <p style="margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--text-secondary);">Get in
+                                touch directly via the office address, official phone links, or email addresses.</p>
+
+                            <div class="contact-info-card glass-card" style="padding: 1rem;">
+                                <span>Primary Email</span>
+                                <a href="mailto:infosubedi09@gmail.com">infosubedi09@gmail.com</a>
+                            </div>
+
+                            <div class="contact-info-card glass-card" style="padding: 1rem; margin-top: 0.75rem;">
+                                <span>Academic Email</span>
+                                <a href="mailto:pradip.subedi@bimc.tu.edu.np">pradip.subedi@bimc.tu.edu.np</a>
+                            </div>
+
+                            <div class="contact-info-card glass-card" style="padding: 1rem; margin-top: 0.75rem;">
+                                <span>Mobile Line</span>
+                                <a href="tel:+977984xxxxxxx">+977-984xxxxxxx</a>
+                            </div>
+
+                            <div class="contact-info-card glass-card" style="padding: 1rem; margin-top: 0.75rem;">
+                                <span>Office Address</span>
+                                <p style="font-size: 0.85rem; color: var(--text-primary);">Birendra Multiple Campus,
+                                    Bharatpur, Chitwan, Nepal</p>
+                            </div>
+                        </div>
+
+                        <!-- Contact Form Right -->
+                        <div class="contact-form-wrapper" style="padding-bottom: 2rem;">
+                            <form id="contact-form" class="contact-form">
+                                <div class="form-group">
+                                    <input type="text" id="form-name" name="name" required placeholder=" "
+                                        aria-required="true">
+                                    <label for="form-name">Full Name</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" id="form-email" name="email" required placeholder=" "
+                                        aria-required="true">
+                                    <label for="form-email">Email Address</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="form-subject" name="subject" required placeholder=" ">
+                                    <label for="form-subject">Subject</label>
+                                </div>
+                                <div class="form-group">
+                                    <textarea id="form-message" name="message" rows="4" required placeholder=" "
+                                        aria-required="true"></textarea>
+                                    <label for="form-message">Describe Your Inquiry</label>
+                                </div>
+                                <button type="submit" id="btn-submit" class="btn btn-primary btn-block"
+                                    style="padding: 0.75rem;">
+                                    <span>Submit Request</span>
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 7. START MENU PANEL -->
+        <div class="start-menu glass-card" id="start-menu-panel" style="display: none;">
+            <div class="start-menu-header">
+                <div class="start-profile-frame">
+                    <img src="images/My main transparent.png" alt="Pradip Subedi Avatar" class="start-avatar">
+                </div>
+                <div class="start-profile-text">
+                    <h5>Pradip Subedi</h5>
+                    <p>infosubedi09@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="start-menu-body">
+                <div class="start-section-title">Pinned Applications</div>
+                <div class="start-apps-grid">
+                    <button class="start-app-btn" data-window="about-window">
+                        <div class="start-app-icon icon-cyan">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                        <span>About Me</span>
+                    </button>
+                    <button class="start-app-btn" data-window="experience-window">
+                        <div class="start-app-icon icon-yellow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                            </svg>
+                        </div>
+                        <span>Experience</span>
+                    </button>
+                    <button class="start-app-btn" data-window="projects-window">
+                        <div class="start-app-icon icon-green">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                        </div>
+                        <span>Projects</span>
+                    </button>
+                    <button class="start-app-btn" data-window="publications-window">
+                        <div class="start-app-icon icon-blue">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                        </div>
+                        <span>Publications</span>
+                    </button>
+                    <button class="start-app-btn" data-window="trainings-window">
+                        <div class="start-app-icon icon-orange">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="8" r="7"></circle>
+                                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                            </svg>
+                        </div>
+                        <span>Trainings</span>
+                    </button>
+                    <button class="start-app-btn" data-window="contact-window">
+                        <div class="start-app-icon icon-pink">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                </path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <span>Contact Me</span>
+                    </button>
+                </div>
+
+                <div class="start-section-title" style="margin-top: 1.5rem;">Quick Stats Widget</div>
+                <div class="start-stats-widget glass-card">
+                    <p><strong>Experience:</strong> 10+ Years in Institutional IT Operations</p>
+                    <p><strong>Education:</strong> MCA (Distinction - IGNOU) / B.Sc. IT (Distinction)</p>
+                    <p><strong>Scholarly Works:</strong> 5 Publications (Journal, Book Chapters & Preprints)</p>
+                    <p><strong>Active Project:</strong> <a href="https://www.gowithevs.com/" target="_blank"
+                            style="color: var(--accent-cyan);">gowithevs.com</a></p>
+                </div>
+            </div>
+
+            <div class="start-menu-footer"
+                style="display: flex; justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box; padding: 0 1.25rem;">
+                <div class="start-typing-wrapper">
+                    <span
+                        style="font-size: 0.8rem; font-weight: 600; opacity: 0.7; font-family: var(--font-heading);">Pradip
+                        Subedi Workstation OS v12.0</span>
+                </div>
+                <!-- Shutdown Power Button -->
+                <button id="start-power-btn" class="start-power-btn" title="Shut down"
+                    aria-label="Shut down workstation">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        style="width: 16px; height: 16px; display: block;">
+                        <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+                        <line x1="12" y1="2" x2="12" y2="12"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- 8. BOTTOM TASKBAR (Windows 11 Centered Layout) -->
+        <footer class="taskbar" id="taskbar" role="contentinfo">
+            <div class="taskbar-container">
+
+                <!-- Center: App Shortcuts -->
+                <div class="taskbar-center" role="navigation" aria-label="Taskbar Apps">
+
+                    <!-- Start Menu Button -->
+                    <button class="taskbar-icon-btn" id="start-btn" aria-label="Open Start Menu" aria-haspopup="true"
+                        aria-expanded="false">
+                        <div class="taskbar-logo">
+                            <!-- Custom Windows-like Grid Logo in Teal/Blue -->
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <rect x="3" y="3" width="8" height="8" rx="1"></rect>
+                                <rect x="13" y="3" width="8" height="8" rx="1"></rect>
+                                <rect x="3" y="13" width="8" height="8" rx="1"></rect>
+                                <rect x="13" y="13" width="8" height="8" rx="1"></rect>
+                            </svg>
+                        </div>
+                    </button>
+
+                    <!-- Active window shortcut toggles -->
+                    <button class="taskbar-icon-btn shortcut-trigger" data-window="thispc-window"
+                        aria-label="Toggle This PC Window" title="This PC">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                        <div class="taskbar-indicator" id="ind-thispc-window"></div>
+                    </button>
+
+                    <button class="taskbar-icon-btn shortcut-trigger" data-window="about-window"
+                        aria-label="Toggle About Me Window">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <div class="taskbar-indicator" id="ind-about-window"></div>
+                    </button>
+
+                    <button class="taskbar-icon-btn shortcut-trigger" data-window="experience-window"
+                        aria-label="Toggle Experience Window">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                        <div class="taskbar-indicator" id="ind-experience-window"></div>
+                    </button>
+
+                    <button class="taskbar-icon-btn shortcut-trigger" data-window="projects-window"
+                        aria-label="Toggle Projects Window">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                        <div class="taskbar-indicator" id="ind-projects-window"></div>
+                    </button>
+
+                    <button class="taskbar-icon-btn shortcut-trigger" data-window="publications-window"
+                        aria-label="Toggle Publications Window">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                        <div class="taskbar-indicator" id="ind-publications-window"></div>
+                    </button>
+
+                    <button class="taskbar-icon-btn shortcut-trigger" data-window="trainings-window"
+                        aria-label="Toggle Trainings Window">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="8" r="7"></circle>
+                            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                        </svg>
+                        <div class="taskbar-indicator" id="ind-trainings-window"></div>
+                    </button>
+
+                    <button class="taskbar-icon-btn shortcut-trigger" data-window="contact-window"
+                        aria-label="Toggle Contact Window">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <div class="taskbar-indicator" id="ind-contact-window"></div>
+                    </button>
+
+                </div>
+
+                <!-- Right Side: System Tray details -->
+                <div class="taskbar-right">
+
+                    <!-- Theme toggler styled like Windows Settings widget toggles -->
+                    <button id="theme-toggle" class="system-icon-btn"
+                        aria-label="Toggle light and dark desktop wallpaper theme" title="Toggle theme">
+                        <!-- Moon Icon -->
+                        <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <!-- Sun Icon -->
+                        <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </button>
+
+                    <!-- Wifi Connection Icon indicator -->
+                    <div class="system-tray-wifi" aria-label="WiFi status active">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            style="width: 18px; height: 18px;">
+                            <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+                            <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+                            <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+                            <line x1="12" y1="20" x2="12.01" y2="20" stroke-linecap="round" stroke-width="3"></line>
+                        </svg>
+                    </div>
+
+                    <!-- Live Running System tray Clock -->
+                    <div class="system-clock-tray" id="system-clock-tray">
+                        <span id="sys-time">12:00 PM</span>
+                        <span id="sys-date" class="tray-date">07/01/2026</span>
+                    </div>
+
+                </div>
+
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Photo Zoom Lightbox Modal -->
+    <div id="lightbox-modal" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="Photo Zoom Viewer"
+        hidden>
+        <button class="lightbox-close" aria-label="Close image view">&times;</button>
+        <div class="lightbox-content-wrapper">
+            <img id="lightbox-img" src="" alt="">
+            <p id="lightbox-caption" class="lightbox-caption"></p>
+        </div>
+    </div>
+
+    <!-- Toast Notification (Drags, operations, form feedbacks) -->
+    <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" hidden>
+        <span id="toast-message">Message submitted successfully!</span>
+    </div>
+
+    <!-- OS Shutdown / Boot Screen Overlay -->
+    <div id="os-boot-screen" class="os-overlay-screen" hidden>
+        <div class="boot-content" id="boot-content">
+            <!-- Windows-like Spinner Loader -->
+            <div class="windows-spinner">
+                <div class="spinner-dot"></div>
+                <div class="spinner-dot"></div>
+                <div class="spinner-dot"></div>
+                <div class="spinner-dot"></div>
+                <div class="spinner-dot"></div>
+                <div class="spinner-dot"></div>
+            </div>
+            <!-- Message -->
+            <div id="boot-message" class="boot-text">Shutting down...</div>
+        </div>
+        <!-- Power Button (shows after shutdown completes) -->
+        <button id="os-power-btn" class="power-btn" style="display: none;" aria-label="Power On Workstation">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                style="width: 32px; height: 32px;">
+                <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+                <line x1="12" y1="2" x2="12" y2="12"></line>
+            </svg>
+            <span class="power-text">Power On</span>
+        </button>
+    </div>
+
+    <!-- Sign In Lock Screen -->
+    <div id="signin-screen" class="signin-screen" hidden>
+        <div class="signin-time" id="signin-time">12:00 PM</div>
+        <div class="signin-date" id="signin-date">Wednesday, July 2</div>
+        <img src="images/My main transparent.png" alt="Pradip Subedi" class="signin-avatar">
+        <div class="signin-name">Pradip Subedi</div>
+        <button id="signin-btn" class="signin-btn">Sign in</button>
+    </div>
+
+    <!-- Custom Script -->
+    <script src="script.js?v=2.4"></script>
+</body>
+
+</html>
