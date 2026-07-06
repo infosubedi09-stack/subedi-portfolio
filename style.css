@@ -28,45 +28,47 @@
     --z-lightbox: 3000;
     --z-toast: 4000;
 
-    /* DARK MODE VARIABLES (Midnight Ocean & Neon Cyan) */
-    --desktop-bg: linear-gradient(135deg, #030814 0%, #081730 50%, #11284E 100%);
-    --window-bg: rgba(9, 21, 41, 0.75);
-    --window-header-bg: rgba(6, 14, 28, 0.85);
-    --taskbar-bg: rgba(10, 22, 44, 0.92);
-    --taskbar-border: rgba(0, 229, 255, 0.4);
-    --taskbar-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 229, 255, 0.15);
-    --start-menu-bg: rgba(8, 24, 48, 0.94);
-    --card-bg: rgba(255, 255, 255, 0.03);
-    --text-primary: #F1F5F9;
-    --text-secondary: #94A3B8;
-    --accent-cyan: #00E5FF;
-    --accent-glow: rgba(0, 229, 255, 0.25);
-    --accent-secondary: #F3E5AB;
-    --border-color: rgba(0, 229, 255, 0.18);
-    --taskbar-icon-hover: rgba(255, 255, 255, 0.08);
-    --shadow-window: 0 20px 50px rgba(0, 0, 0, 0.6);
-    --shadow-taskbar: 0 -4px 20px rgba(0, 0, 0, 0.4);
+    /* DARK MODE VARIABLES (Tactical Battle Green & Warm Cream Gold) */
+    --desktop-bg: linear-gradient(135deg, #070D08 0%, #0D1A10 50%, #162C1C 100%);
+    --window-bg: rgba(14, 26, 17, 0.78);
+    --window-header-bg: rgba(10, 18, 12, 0.88);
+    --taskbar-bg: rgba(12, 22, 14, 0.92);
+    --taskbar-border: rgba(234, 214, 177, 0.4);
+    --taskbar-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 15px rgba(234, 214, 177, 0.18);
+    --start-menu-bg: rgba(13, 24, 15, 0.95);
+    --card-bg: rgba(255, 255, 255, 0.035);
+    --text-primary: #F0EEE9;
+    --text-secondary: #B4C2B6;
+    --accent-cyan: #EAD6B1;
+    --accent-glow: rgba(234, 214, 177, 0.28);
+    --accent-secondary: #A47864;
+    --border-color: rgba(234, 214, 177, 0.22);
+    --taskbar-icon-hover: rgba(234, 214, 177, 0.08);
+    --shadow-window: 0 20px 50px rgba(0, 0, 0, 0.65);
+    --shadow-taskbar: 0 -4px 20px rgba(0, 0, 0, 0.45);
+    --btn-text: #070D08;
 }
 
 .light-theme {
-    /* LIGHT MODE VARIABLES (Windows 11 Frosted White Glass & Sky Blue) */
-    --desktop-bg: linear-gradient(135deg, #E3EEFC 0%, #F3F8FF 50%, #D2E4F9 100%);
-    --window-bg: rgba(255, 255, 255, 0.45);
-    --window-header-bg: rgba(255, 255, 255, 0.6);
-    --taskbar-bg: rgba(255, 255, 255, 0.85);
-    --taskbar-border: rgba(0, 120, 212, 0.4);
-    --taskbar-shadow: 0 8px 32px rgba(15, 23, 42, 0.15), 0 0 15px rgba(0, 120, 212, 0.15);
-    --start-menu-bg: rgba(255, 255, 255, 0.65);
-    --card-bg: rgba(0, 0, 0, 0.015);
-    --text-primary: #0F172A;
-    --text-secondary: #475569;
-    --accent-cyan: #0078D4;
-    --accent-glow: rgba(0, 120, 212, 0.15);
-    --accent-secondary: #B45309;
-    --border-color: rgba(15, 23, 42, 0.14);
-    --taskbar-icon-hover: rgba(0, 120, 212, 0.06);
-    --shadow-window: 0 15px 35px rgba(15, 23, 42, 0.12);
-    --shadow-taskbar: 0 -4px 20px rgba(15, 23, 42, 0.15);
+    /* LIGHT MODE VARIABLES (Cloud Dancer Cream & Deep Battle Green) */
+    --desktop-bg: linear-gradient(135deg, #F0EEE9 0%, #EAE6DF 50%, #DCD6CD 100%);
+    --window-bg: rgba(240, 238, 233, 0.72);
+    --window-header-bg: rgba(234, 230, 223, 0.85);
+    --taskbar-bg: rgba(240, 238, 233, 0.88);
+    --taskbar-border: rgba(45, 76, 52, 0.4);
+    --taskbar-shadow: 0 8px 32px rgba(22, 44, 28, 0.15), 0 0 15px rgba(45, 76, 52, 0.15);
+    --start-menu-bg: rgba(240, 238, 233, 0.92);
+    --card-bg: rgba(45, 76, 52, 0.03);
+    --text-primary: #122016;
+    --text-secondary: #3B5E43;
+    --accent-cyan: #2D4C34;
+    --accent-glow: rgba(45, 76, 52, 0.2);
+    --accent-secondary: #A47864;
+    --border-color: rgba(45, 76, 52, 0.18);
+    --taskbar-icon-hover: rgba(45, 76, 52, 0.06);
+    --shadow-window: 0 15px 35px rgba(22, 44, 28, 0.12);
+    --shadow-taskbar: 0 -4px 20px rgba(22, 44, 28, 0.15);
+    --btn-text: #F9F6F0;
 }
 
 /* ==========================================================================
@@ -216,12 +218,12 @@ h6 {
 .widget-badge {
     font-size: 0.72rem;
     font-weight: 700;
-    background: rgba(0, 229, 255, 0.1);
+    background: rgba(234, 214, 177, 0.12);
     color: var(--accent-cyan);
     padding: 6px 16px;
     border-radius: 50px;
     margin-bottom: 1.25rem;
-    border: 1px solid rgba(0, 229, 255, 0.2);
+    border: 1px solid rgba(234, 214, 177, 0.28);
     letter-spacing: 0.05em;
     font-family: var(--font-heading);
 }
@@ -260,15 +262,15 @@ h6 {
 
 @keyframes avatarCirclePulse {
     0% {
-        box-shadow: 0 0 20px rgba(0, 229, 255, 0.4), 0 0 45px rgba(0, 229, 255, 0.15);
+        box-shadow: 0 0 20px rgba(234, 214, 177, 0.4), 0 0 45px rgba(234, 214, 177, 0.15);
         transform: scale(1);
     }
     50% {
-        box-shadow: 0 0 35px rgba(0, 229, 255, 0.85), 0 0 70px rgba(0, 229, 255, 0.35);
+        box-shadow: 0 0 35px rgba(234, 214, 177, 0.85), 0 0 70px rgba(234, 214, 177, 0.35);
         transform: scale(1.025);
     }
     100% {
-        box-shadow: 0 0 20px rgba(0, 229, 255, 0.4), 0 0 45px rgba(0, 229, 255, 0.15);
+        box-shadow: 0 0 20px rgba(234, 214, 177, 0.4), 0 0 45px rgba(234, 214, 177, 0.15);
         transform: scale(1);
     }
 }
@@ -282,7 +284,7 @@ h6 {
     box-shadow: 0 0 35px var(--accent-glow);
     overflow: hidden;
     position: relative;
-    background: radial-gradient(circle, rgba(0, 229, 255, 0.12) 0%, rgba(9, 21, 41, 0.65) 100%);
+    background: radial-gradient(circle, rgba(234, 214, 177, 0.15) 0%, rgba(14, 26, 17, 0.75) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -344,38 +346,38 @@ h6 {
 
 /* Theme specific shortcut colors */
 .icon-user-avatar {
-    background: rgba(0, 229, 255, 0.15);
+    background: rgba(234, 214, 177, 0.15);
     color: var(--accent-cyan);
 }
 
 .icon-experience {
-    background: rgba(243, 229, 171, 0.15);
+    background: rgba(164, 120, 100, 0.15);
     color: var(--accent-secondary);
 }
 
 .icon-projects {
-    background: rgba(46, 204, 113, 0.15);
-    color: #2ecc71;
+    background: rgba(124, 179, 130, 0.15);
+    color: #7CB382;
 }
 
 .icon-publications {
-    background: rgba(52, 152, 219, 0.15);
-    color: #3498db;
+    background: rgba(198, 164, 97, 0.15);
+    color: #C6A461;
 }
 
 .icon-trainings {
-    background: rgba(230, 126, 34, 0.15);
-    color: #e67e22;
+    background: rgba(212, 224, 155, 0.15);
+    color: #D4E09B;
 }
 
 .icon-contact {
-    background: rgba(155, 89, 182, 0.15);
-    color: #9b59b6;
+    background: rgba(180, 194, 182, 0.15);
+    color: #B4C2B6;
 }
 
 .icon-thispc {
-    background: rgba(0, 188, 212, 0.15);
-    color: #00bcd4;
+    background: rgba(234, 214, 177, 0.15);
+    color: #EAD6B1;
 }
 
 .desktop-shortcut:hover .shortcut-icon {
@@ -584,7 +586,7 @@ h6 {
     border: none;
     box-shadow: 0 0 25px var(--accent-glow);
     overflow: hidden;
-    background: radial-gradient(circle, rgba(0, 229, 255, 0.12) 0%, rgba(9, 21, 41, 0.65) 100%);
+    background: radial-gradient(circle, rgba(234, 214, 177, 0.15) 0%, rgba(14, 26, 17, 0.75) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1057,7 +1059,7 @@ h6 {
 
 .btn-primary {
     background: var(--accent-cyan);
-    color: #030814;
+    color: var(--btn-text);
     box-shadow: 0 0 15px var(--accent-glow);
 }
 
@@ -1183,12 +1185,12 @@ h6 {
 }
 
 .icon-cyan {
-    background: rgba(0, 229, 255, 0.1);
+    background: rgba(234, 214, 177, 0.1);
     color: var(--accent-cyan);
 }
 
 .icon-yellow {
-    background: rgba(243, 229, 171, 0.1);
+    background: rgba(164, 120, 100, 0.15);
     color: var(--accent-secondary);
 }
 
@@ -1379,7 +1381,7 @@ h6 {
 }
 
 .sidebar-item.active {
-    background: rgba(0, 229, 255, 0.15);
+    background: rgba(234, 214, 177, 0.15);
     color: var(--accent-cyan);
     font-weight: 600;
 }
@@ -1586,7 +1588,7 @@ h6 {
 /* Power On Button */
 .power-btn {
     background: transparent;
-    border: 2px solid rgba(0, 229, 255, 0.4);
+    border: 2px solid rgba(234, 214, 177, 0.4);
     outline: none;
     color: var(--accent-cyan);
     cursor: pointer;
@@ -1598,7 +1600,7 @@ h6 {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    box-shadow: 0 0 15px rgba(0, 229, 255, 0.15);
+    box-shadow: 0 0 15px rgba(234, 214, 177, 0.15);
     transition: all 0.3s ease;
 }
 
@@ -1609,7 +1611,7 @@ h6 {
 }
 
 .power-btn svg {
-    filter: drop-shadow(0 0 5px rgba(0, 229, 255, 0.5));
+    filter: drop-shadow(0 0 5px rgba(234, 214, 177, 0.5));
 }
 
 .power-text {
@@ -1648,8 +1650,8 @@ h6 {
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid rgba(0, 229, 255, 0.3);
-    box-shadow: 0 0 30px rgba(0, 229, 255, 0.1);
+    border: 3px solid rgba(234, 214, 177, 0.3);
+    box-shadow: 0 0 30px rgba(234, 214, 177, 0.1);
 }
 
 .signin-name {
@@ -1661,8 +1663,8 @@ h6 {
 }
 
 .signin-btn {
-    background: rgba(0, 229, 255, 0.12);
-    border: 1px solid rgba(0, 229, 255, 0.3);
+    background: rgba(234, 214, 177, 0.12);
+    border: 1px solid rgba(234, 214, 177, 0.3);
     color: #ffffff;
     font-family: var(--font-heading);
     font-size: 0.85rem;
@@ -1676,9 +1678,9 @@ h6 {
 }
 
 .signin-btn:hover {
-    background: rgba(0, 229, 255, 0.25);
+    background: rgba(234, 214, 177, 0.25);
     border-color: var(--accent-cyan);
-    box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
+    box-shadow: 0 0 20px rgba(234, 214, 177, 0.15);
     transform: translateY(-1px);
 }
 
@@ -1836,8 +1838,8 @@ h6 {
     align-items: center;
     gap: 6px;
     padding: 4px 10px;
-    background: rgba(0, 229, 255, 0.08);
-    border: 1px solid rgba(0, 229, 255, 0.25);
+    background: rgba(234, 214, 177, 0.08);
+    border: 1px solid rgba(234, 214, 177, 0.25);
     border-radius: var(--radius-md);
     color: var(--accent-cyan);
     font-size: 0.76rem;
@@ -1845,14 +1847,14 @@ h6 {
     font-family: var(--font-heading);
     cursor: pointer;
     transition: all var(--transition-fast);
-    box-shadow: 0 0 10px rgba(0, 229, 255, 0.1);
+    box-shadow: 0 0 10px rgba(234, 214, 177, 0.1);
     user-select: none;
 }
 
 .system-tray-visitors:hover {
-    background: rgba(0, 229, 255, 0.18);
+    background: rgba(234, 214, 177, 0.18);
     border-color: var(--accent-cyan);
-    box-shadow: 0 0 16px rgba(0, 229, 255, 0.35);
+    box-shadow: 0 0 16px rgba(234, 214, 177, 0.35);
     transform: translateY(-1px);
 }
 
@@ -1867,8 +1869,8 @@ h6 {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #00E5FF;
-    box-shadow: 0 0 8px #00E5FF;
+    background: #EAD6B1;
+    box-shadow: 0 0 8px #EAD6B1;
     animation: visitorPulseAnim 2s infinite ease-in-out;
     flex-shrink: 0;
 }
@@ -2621,17 +2623,17 @@ h6 {
     font-size: 0.85rem;
     padding: 0.35rem 0.85rem;
     border-radius: 50px;
-    box-shadow: 0 0 15px rgba(0, 229, 255, 0.25);
+    box-shadow: 0 0 15px rgba(234, 214, 177, 0.25);
     text-decoration: none;
     line-height: 1.2;
 }
 .fee-badge.student {
-    background: rgba(0, 229, 255, 0.15);
-    color: #00E5FF;
-    border: 1px solid rgba(0, 229, 255, 0.4);
+    background: rgba(234, 214, 177, 0.15);
+    color: #EAD6B1;
+    border: 1px solid rgba(234, 214, 177, 0.4);
 }
 .fee-badge.others {
-    background: rgba(255, 215, 0, 0.15);
-    color: #FFD700;
-    border: 1px solid rgba(255, 215, 0, 0.4);
+    background: rgba(136, 176, 75, 0.15);
+    color: #88B04B;
+    border: 1px solid rgba(136, 176, 75, 0.4);
 }

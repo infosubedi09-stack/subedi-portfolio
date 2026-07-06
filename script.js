@@ -457,14 +457,14 @@ document.addEventListener('DOMContentLoaded', () => {
        WALLPAPER GRADIENT THEME SWITCHER
        ========================================================================== */
     function initTheme() {
-        // Retrieve theme state from localStorage
+        // Retrieve theme state from localStorage (default to light mode)
         const localTheme = localStorage.getItem('desktopTheme');
-        if (localTheme === 'light') {
+        if (localTheme === 'dark') {
+            body.classList.remove('light-theme');
+            body.classList.add('dark-theme');
+        } else {
             body.classList.remove('dark-theme');
             body.classList.add('light-theme');
-        } else {
-            body.classList.add('dark-theme');
-            body.classList.remove('light-theme');
         }
 
         themeToggle.addEventListener('click', () => {
@@ -517,14 +517,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function getLineColor() {
         // Line transparency colors tailored to dark/light modes
         return body.classList.contains('dark-theme') 
-            ? 'rgba(0, 229, 255, 0.04)' 
-            : 'rgba(2, 132, 199, 0.04)';
+            ? 'rgba(234, 214, 177, 0.05)' 
+            : 'rgba(45, 76, 52, 0.05)';
     }
 
     function getParticleColor() {
         return body.classList.contains('dark-theme')
-            ? 'rgba(0, 229, 255, 0.2)'
-            : 'rgba(2, 132, 199, 0.2)';
+            ? 'rgba(234, 214, 177, 0.25)'
+            : 'rgba(45, 76, 52, 0.25)';
     }
 
     function animateParticles() {
