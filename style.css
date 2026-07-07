@@ -2682,6 +2682,10 @@ h6 {
     gap: 0.5rem;
 }
 
+.mobile-only-shortcut {
+    display: none !important;
+}
+
 .ai-mini-widget {
     padding: 1.1rem 1.35rem;
     border-radius: var(--radius-lg);
@@ -2703,6 +2707,18 @@ h6 {
 
 .ai-mini-widget:active {
     transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+    .mobile-only-shortcut {
+        display: flex !important;
+    }
+    .ai-mini-widget {
+        display: none !important;
+    }
+    .desktop-right-column {
+        display: contents !important;
+    }
 }
 
 .grid-2-window {
