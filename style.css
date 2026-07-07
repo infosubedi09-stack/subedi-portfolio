@@ -198,7 +198,8 @@ h6 {
     flex-direction: column;
     gap: 1.5rem;
     margin: 0 auto;
-    max-width: 950px;
+    max-width: 1350px;
+    width: 100%;
     height: 100%;
     overflow-y: auto;
     padding-bottom: 2rem;
@@ -208,10 +209,11 @@ h6 {
 
 .desktop-profile-widget {
     display: grid;
-    grid-template-columns: 1.25fr 0.75fr;
+    grid-template-columns: 1.45fr 0.55fr;
     align-items: center;
     gap: 2.5rem;
     width: 100%;
+    max-width: 100%;
     height: auto;
     color: var(--text-primary);
     padding-bottom: 0;
@@ -246,6 +248,13 @@ h6 {
     line-height: 1.1;
     margin-bottom: 0.75rem;
     color: var(--text-primary);
+}
+
+@media (min-width: 901px) {
+    .widget-title,
+    .widget-title .accent-title {
+        white-space: nowrap !important;
+    }
 }
 
 .widget-typing-box {
@@ -2360,8 +2369,10 @@ h6 {
     }
 
     .desktop-profile-widget {
-        max-width: 1050px;
+        max-width: 100%;
+        width: 100%;
         gap: 3.5rem;
+        grid-template-columns: 1.45fr 0.55fr;
     }
 
     .widget-avatar-frame {
@@ -2409,8 +2420,10 @@ h6 {
     }
 
     .desktop-profile-widget {
-        max-width: 1250px;
-        gap: 5rem;
+        max-width: 100%;
+        width: 100%;
+        gap: 4.5rem;
+        grid-template-columns: 1.45fr 0.55fr;
     }
 
     .widget-avatar-frame {
