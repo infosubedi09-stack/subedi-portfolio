@@ -114,6 +114,7 @@
                     <span class="shortcut-label">Contact Me</span>
                 </button>
 
+
                 <a href="training/index.html" class="desktop-shortcut" aria-label="Open 7-Day AI Masterclass Page" style="text-decoration: none;">
                     <div class="shortcut-icon" style="background: linear-gradient(135deg, #EAD6B1, #88B04B); color: #070D08; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(234, 214, 177, 0.4);">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 24px; height: 24px;">
@@ -126,27 +127,57 @@
 
             </div>
 
-            <!-- Right: Interactive Desktop Profile Widget (Matches User Reference) -->
-            <div class="desktop-profile-widget" aria-label="Profile Info Widget">
-                <div class="widget-text-panel">
-                    <div class="widget-badge">WELCOME TO MY DIGITAL WORKSPACE</div>
-                    <h1 class="widget-title">Hi, I'm <span class="accent-title">Pradip Subedi</span></h1>
+            <!-- Right: Desktop Right Column (Profile Widget + AI Mood Game Widget) -->
+            <div class="desktop-right-column" aria-label="Desktop Right Widgets Area">
+                <!-- Top: Interactive Desktop Profile Widget (Matches User Reference) -->
+                <div class="desktop-profile-widget" aria-label="Profile Info Widget">
+                    <div class="widget-text-panel">
+                        <div class="widget-badge">WELCOME TO MY DIGITAL WORKSPACE</div>
+                        <h1 class="widget-title">Hi, I'm <span class="accent-title">Pradip Subedi</span></h1>
 
-                    <div class="widget-typing-box">
-                        <span>I am </span><span id="widget-typed-role" class="cyan-text"
-                            style="color: var(--accent-cyan);"></span><span class="typed-cursor">|</span>
+                        <div class="widget-typing-box">
+                            <span>I am </span><span id="widget-typed-role" class="cyan-text"
+                                style="color: var(--accent-cyan);"></span><span class="typed-cursor">|</span>
+                        </div>
+
+                        <p class="widget-desc">
+                            An IT expert with a Master of Computer Applications (MCA) in AI, Cloud, and Data Science. I
+                            bridge the gap between institutional technology infrastructure, advanced machine learning
+                            research, and modern SEO growth hacking.
+                        </p>
                     </div>
 
-                    <p class="widget-desc">
-                        An IT expert with a Master of Computer Applications (MCA) in AI, Cloud, and Data Science. I
-                        bridge the gap between institutional technology infrastructure, advanced machine learning
-                        research, and modern SEO growth hacking.
-                    </p>
+                    <div class="widget-photo-panel">
+                        <div class="widget-avatar-frame">
+                            <img src="images/My main transparent.png" alt="Pradip Subedi" class="widget-avatar-img">
+                        </div>
+                    </div>
                 </div>
 
-                <div class="widget-photo-panel">
-                    <div class="widget-avatar-frame">
-                        <img src="images/My main transparent.png" alt="Pradip Subedi" class="widget-avatar-img">
+                <!-- Bottom: Small AI Mood Game Desktop Widget Card (Click to open window) -->
+                <div class="ai-mini-widget glass-card desktop-shortcut" id="ai-mini-widget" role="button" tabindex="0" aria-label="Open AI Mood Game Window" data-window="aigame-window" title="Click to launch AI Mood Game & Expression Scanner">
+                    <div class="mini-widget-header">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <span class="pulse-dot" style="width: 8px; height: 8px; background: #00F2FE; border-radius: 50%; box-shadow: 0 0 10px #00F2FE;"></span>
+                            <span style="font-size: 0.75rem; font-weight: 700; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 1px;">Live AI Vision Widget</span>
+                        </div>
+                        <span class="privacy-badge" style="font-size: 0.65rem; background: rgba(136, 176, 75, 0.2); color: #88B04B; padding: 2px 8px; border-radius: 10px; border: 1px solid rgba(136, 176, 75, 0.4); font-weight: 600;">🔒 100% Private AI</span>
+                    </div>
+                    <div class="mini-widget-content" style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 0.75rem;">
+                        <div style="display: flex; align-items: center; gap: 0.85rem;">
+                            <div class="mini-widget-icon" style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #00F2FE, #4FACFE); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3); flex-shrink: 0; color: #070D08;">
+                                🤖
+                            </div>
+                            <div>
+                                <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.2rem; font-family: var(--font-heading);">AI Mood Game & Scanner</h4>
+                                <p style="font-size: 0.78rem; color: var(--text-secondary); line-height: 1.3; margin: 0;">Click to launch real-time facial expression detector & challenge!</p>
+                            </div>
+                        </div>
+                        <div class="mini-widget-action" style="flex-shrink: 0;">
+                            <span class="btn btn-primary" style="padding: 0.55rem 1.0rem; font-size: 0.82rem; border-radius: var(--radius-md); display: flex; align-items: center; gap: 0.4rem; pointer-events: none; box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);">
+                                <span>Open Window 🚀</span>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -905,9 +936,145 @@
                 </div>
             </div>
 
+            <!-- 7. AI MOOD GAME WINDOW -->
+            <div class="window glass-card" id="aigame-window" role="dialog" aria-labelledby="aigame-title"
+                style="top: 8%; left: 16%; width: 880px; height: 560px;" hidden>
+                <div class="window-header">
+                    <div class="window-title-area">
+                        <svg class="window-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+                            <circle cx="12" cy="5" r="2"></circle>
+                            <path d="M12 7v4"></path>
+                            <line x1="8" y1="16" x2="8.01" y2="16"></line>
+                            <line x1="16" y1="16" x2="16.01" y2="16"></line>
+                        </svg>
+                        <span id="aigame-title" class="window-title-text">AI Mood & Expression Scanner</span>
+                        <span class="privacy-badge" style="margin-left: 10px; font-size: 0.68rem; background: rgba(136, 176, 75, 0.25); color: #88B04B; padding: 2px 8px; border-radius: 12px; border: 1px solid rgba(136, 176, 75, 0.5); font-weight: 600;">🔒 100% On-Device Private AI</span>
+                    </div>
+                    <div class="window-controls">
+                        <button class="win-btn win-min" aria-label="Minimize Window">&#9472;</button>
+                        <button class="win-btn win-max" aria-label="Maximize Window">&#9633;</button>
+                        <button class="win-btn win-close" aria-label="Close Window">&times;</button>
+                    </div>
+                </div>
+                <div class="window-body">
+                    <div class="window-content grid-2-window" style="gap: 1.5rem; height: 100%; align-items: flex-start;">
+                        
+                        <!-- Left Panel: Camera & AI Vision Scanner -->
+                        <div class="aigame-left-panel" style="display: flex; flex-direction: column; width: 100%;">
+                            <div class="camera-viewport-frame glass-card" id="camera-frame">
+                                <video id="webcam-video" autoplay muted playsinline></video>
+                                <canvas id="webcam-overlay"></canvas>
+                                <div class="scanning-laser" id="scanning-laser" hidden></div>
+                                <div class="camera-placeholder" id="camera-placeholder">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 48px; height: 48px; margin-bottom: 0.8rem; opacity: 0.7;">
+                                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                        <circle cx="12" cy="13" r="4"></circle>
+                                    </svg>
+                                    <h5 style="margin-bottom: 0.4rem; font-size: 1.05rem;">Camera Offline</h5>
+                                    <p style="font-size: 0.8rem; text-align: center; color: var(--text-secondary); max-width: 260px;">Click below to grant camera access and activate the real-time AI neural network scanner.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="camera-controls-bar" style="margin-top: 1rem; display: flex; gap: 0.75rem;">
+                                <button id="btn-start-camera" class="btn btn-primary" style="flex: 1; padding: 0.65rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                                    <span>🚀 Start Camera & AI Scanner</span>
+                                </button>
+                                <button id="btn-stop-camera" class="btn" style="padding: 0.65rem 1rem; background: rgba(255, 80, 80, 0.15); color: #ff6b6b; border: 1px solid rgba(255, 80, 80, 0.3); border-radius: var(--radius-md); font-weight: 600; cursor: pointer;" hidden>
+                                    <span>⏹️ Stop</span>
+                                </button>
+                            </div>
+                            <div id="ai-status-text" style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.6rem; text-align: center;">Ready to initialize neural network weights (~2.5 MB)...</div>
+                        </div>
+
+                        <!-- Right Panel: Interactive Mood Dashboard & Game Mode -->
+                        <div class="aigame-right-panel" style="display: flex; flex-direction: column; width: 100%; gap: 1.25rem;">
+                            
+                            <!-- Toggle between Mood Dashboard and Challenge Game -->
+                            <div class="timeline-toggle-wrapper">
+                                <button id="btn-mode-mood" class="toggle-switch-btn active" aria-controls="panel-mode-mood">📊 Mood Dashboard</button>
+                                <button id="btn-mode-game" class="toggle-switch-btn" aria-controls="panel-mode-game">🎮 Expression Challenge</button>
+                            </div>
+
+                            <!-- Mode 1: Mood Dashboard -->
+                            <div id="panel-mode-mood" class="aigame-mode-panel active-timeline" style="display: flex; flex-direction: column; gap: 1rem;">
+                                
+                                <!-- Live AI Commentary Box -->
+                                <div class="ai-insight-card glass-card" id="ai-insight-box">
+                                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                        <span class="pulse-dot" style="width: 8px; height: 8px; background: var(--accent-cyan); border-radius: 50%; display: inline-block;"></span>
+                                        <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; color: var(--accent-cyan);">AI Neural Analysis</span>
+                                    </div>
+                                    <h4 id="ai-dominant-emotion" style="font-size: 1.15rem; margin-bottom: 0.35rem;">Waiting for video stream...</h4>
+                                    <p id="ai-commentary-text" style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">Once your webcam is active, our TensorFlow.js model will analyze your facial expressions in real time and deliver custom IT & SEO insights!</p>
+                                </div>
+
+                                <!-- Emotion Confidence Meters -->
+                                <div class="emotion-meters-container glass-card" style="padding: 1rem;">
+                                    <h5 style="font-size: 0.85rem; margin-bottom: 0.8rem; color: var(--text-primary); border-bottom: 1px solid var(--border-color); padding-bottom: 0.4rem;">Live Emotion Confidence</h5>
+                                    
+                                    <div class="emotion-meter-item">
+                                        <div class="emotion-label-row"><span>😄 Happy</span><span id="score-happy">0%</span></div>
+                                        <div class="emotion-bar-bg"><div class="emotion-bar-fill bar-happy" id="bar-happy" style="width: 0%;"></div></div>
+                                    </div>
+                                    <div class="emotion-meter-item">
+                                        <div class="emotion-label-row"><span>😲 Surprised</span><span id="score-surprised">0%</span></div>
+                                        <div class="emotion-bar-bg"><div class="emotion-bar-fill bar-surprised" id="bar-surprised" style="width: 0%;"></div></div>
+                                    </div>
+                                    <div class="emotion-meter-item">
+                                        <div class="emotion-label-row"><span>😐 Neutral</span><span id="score-neutral">0%</span></div>
+                                        <div class="emotion-bar-bg"><div class="emotion-bar-fill bar-neutral" id="bar-neutral" style="width: 0%;"></div></div>
+                                    </div>
+                                    <div class="emotion-meter-item">
+                                        <div class="emotion-label-row"><span>😡 Focused/Angry</span><span id="score-angry">0%</span></div>
+                                        <div class="emotion-bar-bg"><div class="emotion-bar-fill bar-angry" id="bar-angry" style="width: 0%;"></div></div>
+                                    </div>
+                                    <div class="emotion-meter-item">
+                                        <div class="emotion-label-row"><span>😢 Sad</span><span id="score-sad">0%</span></div>
+                                        <div class="emotion-bar-bg"><div class="emotion-bar-fill bar-sad" id="bar-sad" style="width: 0%;"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Mode 2: Expression Challenge Game -->
+                            <div id="panel-mode-game" class="aigame-mode-panel" style="display: none; flex-direction: column; gap: 1rem;">
+                                <div class="ai-insight-card glass-card" style="text-align: center; padding: 1.5rem 1rem;">
+                                    <div style="font-size: 0.8rem; font-weight: 700; color: var(--accent-cyan); text-transform: uppercase; margin-bottom: 0.5rem;">🎮 The Expression Challenge</div>
+                                    <h3 id="game-target-prompt" style="font-size: 1.3rem; margin-bottom: 0.5rem;">Ready to Play?</h3>
+                                    <p id="game-instructions" style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem;">Test your facial acting skills against our AI! Match the prompted emotions before the timer runs out to score points.</p>
+                                    
+                                    <div class="game-stats-row" style="display: flex; justify-content: space-around; margin-bottom: 1.25rem; background: rgba(0,0,0,0.15); padding: 0.75rem; border-radius: var(--radius-md);">
+                                        <div>
+                                            <div style="font-size: 0.7rem; color: var(--text-secondary);">SCORE</div>
+                                            <div id="game-score-val" style="font-size: 1.5rem; font-weight: 800; color: var(--accent-cyan);">0</div>
+                                        </div>
+                                        <div>
+                                            <div style="font-size: 0.7rem; color: var(--text-secondary);">TIMER</div>
+                                            <div id="game-timer-val" style="font-size: 1.5rem; font-weight: 800; color: #ffeb3b;">15s</div>
+                                        </div>
+                                        <div>
+                                            <div style="font-size: 0.7rem; color: var(--text-secondary);">STREAK</div>
+                                            <div id="game-streak-val" style="font-size: 1.5rem; font-weight: 800; color: #88B04B;">0🔥</div>
+                                        </div>
+                                    </div>
+
+                                    <button id="btn-start-game" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 0.95rem;">
+                                        <span>🏁 Start Challenge!</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
         </div>
 
-        <!-- 7. START MENU PANEL -->
+        <!-- 8. START MENU PANEL -->
         <div class="start-menu glass-card" id="start-menu-panel" style="display: none;">
             <div class="start-menu-header">
                 <div class="start-profile-frame">
@@ -976,6 +1143,16 @@
                             </svg>
                         </div>
                         <span>Contact Me</span>
+                    </button>
+                    <button class="start-app-btn" data-window="aigame-window">
+                        <div class="start-app-icon icon-cyan" style="background: linear-gradient(135deg, #00F2FE, #4FACFE); color: #070D08;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+                                <circle cx="12" cy="5" r="2"></circle>
+                                <path d="M12 7v4"></path>
+                            </svg>
+                        </div>
+                        <span>AI Mood Game</span>
                     </button>
                 </div>
 
@@ -1095,6 +1272,17 @@
                         <div class="taskbar-indicator" id="ind-contact-window"></div>
                     </button>
 
+                    <button class="taskbar-icon-btn shortcut-trigger" data-window="aigame-window"
+                        aria-label="Toggle AI Mood Game Window" title="AI Mood Game">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+                            <circle cx="12" cy="5" r="2"></circle>
+                            <path d="M12 7v4"></path>
+                        </svg>
+                        <div class="taskbar-indicator" id="ind-aigame-window"></div>
+                    </button>
+
+
                 </div>
 
                 <!-- Right Side: System Tray details -->
@@ -1207,6 +1395,8 @@
         <button id="signin-btn" class="signin-btn">Sign in</button>
     </div>
 
+    <!-- Face API (Lightweight TensorFlow.js Face & Expression Detection) -->
+    <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.7.14/dist/face-api.min.js"></script>
     <!-- Custom Script -->
     <script src="script.js?v=2.5"></script>
 </body>

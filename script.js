@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSafely('FileExplorer', initFileExplorer);
     initSafely('OSPowerManagement', initOSPowerManagement);
     initSafely('VisitorCounter', initVisitorCounter);
+    initSafely('AIFaceGame', initAIFaceGame);
 
     /* ==========================================================================
        LIVE SYSTEM CLOCK
@@ -922,4 +923,418 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    /* ==========================================================================
+       AI FACIAL EXPRESSION GAME & MOOD DETECTOR ENGINE
+       ========================================================================== */
+    function initAIFaceGame() {
+        const win = document.getElementById('aigame-window');
+        const video = document.getElementById('webcam-video');
+        const canvas = document.getElementById('webcam-overlay');
+        const placeholder = document.getElementById('camera-placeholder');
+        const laser = document.getElementById('scanning-laser');
+        const statusText = document.getElementById('ai-status-text');
+        const btnStart = document.getElementById('btn-start-camera');
+        const btnStop = document.getElementById('btn-stop-camera');
+        const domEmotion = document.getElementById('ai-dominant-emotion');
+        const commentaryText = document.getElementById('ai-commentary-text');
+
+        // Mode elements
+        const btnModeMood = document.getElementById('btn-mode-mood');
+        const btnModeGame = document.getElementById('btn-mode-game');
+        const panelModeMood = document.getElementById('panel-mode-mood');
+        const panelModeGame = document.getElementById('panel-mode-game');
+
+        // Game elements
+        const btnStartGame = document.getElementById('btn-start-game');
+        const targetPrompt = document.getElementById('game-target-prompt');
+        const gameInstructions = document.getElementById('game-instructions');
+        const scoreVal = document.getElementById('game-score-val');
+        const timerVal = document.getElementById('game-timer-val');
+        const streakVal = document.getElementById('game-streak-val');
+
+        if (!win || !video || !canvas || !btnStart) return;
+
+        let modelsLoaded = false;
+        let isScanning = false;
+        let videoStream = null;
+        let detectInterval = null;
+
+        // Game state
+        let gameActive = false;
+        let gameScore = 0;
+        let gameStreak = 0;
+        let gameTimer = 15;
+        let gameTimerInterval = null;
+        let currentTarget = null;
+
+        const emotionsList = ['happy', 'surprised', 'neutral', 'angry', 'sad'];
+        const emojiMap = {
+            happy: '😄',
+            surprised: '😲',
+            neutral: '😐',
+            angry: '😡',
+            sad: '😢',
+            fearful: '😱',
+            disgusted: '🤢'
+        };
+
+        const commentaryMap = {
+            happy: {
+                title: "😄 Happy & High Energy!",
+                text: "Incredible positive vibes! You look ready to deploy scalable cloud architectures, train deep neural networks, and drive record-breaking SEO growth! Let's build something awesome today! 🚀"
+            },
+            surprised: {
+                title: "😲 Astonished / Surprised!",
+                text: "Whoa! Did you just see Pradip Subedi's MCA Distinction grades from IGNOU or his incredible digital marketing conversion rates?! Prepare to be wowed by this Windows 11 portfolio! 📈✨"
+            },
+            neutral: {
+                title: "😐 Calm & Focused Professional",
+                text: "Cool, calm, and collected—just like an enterprise Linux server maintaining 99.99% uptime! Perfect mindset for complex algorithmic problem-solving and IT infrastructure management! 💻⚡"
+            },
+            angry: {
+                title: "😡 Deep Concentration / Debug Mode",
+                text: "Intense debugging focus detected! Tackling tough code or algorithmic bottlenecks? Take a sip of tea ☕, trust your unit tests, and let's crush those bugs together! 🛠️🔥"
+            },
+            sad: {
+                title: "😢 Thoughtful / Contemplative",
+                text: "Aww, don't feel down! Even the most advanced neural networks experience high loss before converging to optimal solutions! Keep going, success is just one epoch away! 🫂✨"
+            },
+            fearful: {
+                title: "😱 High Alert / Cybersecurity Mode",
+                text: "Security sensors tingling?! Don't worry! Our automated cybersecurity governance (BlockSmartGov) and firewall protocols are fully active! Your session is 100% secure! 🛡️🔒"
+            },
+            disgusted: {
+                title: "🤢 Code Refactoring Alert!",
+                text: "Did you just catch a glimpse of unoptimized legacy spaghetti code or keyword stuffing?! Let Pradip refactor and clean it up with modern best practices! 🧹🚀"
+            }
+        };
+
+        // Mode Switching
+        if (btnModeMood && btnModeGame) {
+            btnModeMood.addEventListener('click', () => {
+                btnModeMood.classList.add('active');
+                btnModeGame.classList.remove('active');
+                panelModeMood.style.display = 'flex';
+                panelModeGame.style.display = 'none';
+            });
+
+            btnModeGame.addEventListener('click', () => {
+                btnModeGame.classList.add('active');
+                btnModeMood.classList.remove('active');
+                panelModeGame.style.display = 'flex';
+                panelModeMood.style.display = 'none';
+            });
+        }
+
+        // Start Camera Button Handler
+        btnStart.addEventListener('click', async () => {
+            if (typeof faceapi === 'undefined') {
+                statusText.textContent = "❌ Error: face-api library failed to load. Please check internet connection.";
+                showToast("Failed to load face-api neural networks!");
+                return;
+            }
+
+            try {
+                btnStart.disabled = true;
+                if (!modelsLoaded) {
+                    statusText.textContent = "⏳ Downloading AI Neural Models (~2.5 MB)... Please wait...";
+                    const MODEL_URL = 'https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.7.14/model/';
+                    await Promise.all([
+                        faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
+                        faceapi.nets.faceExpressionNet.loadFromUri(MODEL_URL)
+                    ]);
+                    modelsLoaded = true;
+                }
+
+                statusText.textContent = "📸 Requesting webcam permission...";
+                videoStream = await navigator.mediaDevices.getUserMedia({
+                    video: { width: { ideal: 640 }, height: { ideal: 480 }, facingMode: "user" },
+                    audio: false
+                });
+
+                video.srcObject = videoStream;
+                video.onloadedmetadata = () => {
+                    video.play();
+                    isScanning = true;
+                    placeholder.style.opacity = '0';
+                    setTimeout(() => placeholder.hidden = true, 300);
+                    if (laser) laser.hidden = false;
+                    document.getElementById('camera-frame').classList.add('scanning');
+                    
+                    btnStart.hidden = true;
+                    btnStart.disabled = false;
+                    btnStop.hidden = false;
+                    
+                    statusText.textContent = "✅ AI Neural Network Active | Analyzing facial expressions...";
+                    showToast("🚀 AI Facial Scanner Initialized!");
+                    startDetectionLoop();
+                };
+
+            } catch (err) {
+                console.error("[AI Scanner] Error:", err);
+                btnStart.disabled = false;
+                statusText.textContent = "❌ Camera permission denied or device unavailable!";
+                showToast("Camera access required for AI Expression Scanner!");
+            }
+        });
+
+        // Stop Camera Handler
+        btnStop.addEventListener('click', () => {
+            stopCamera();
+        });
+
+        // Also stop camera if window is closed
+        const closeBtn = win.querySelector('.win-close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                stopCamera();
+            });
+        }
+
+
+        function stopCamera() {
+            isScanning = false;
+            if (detectInterval) {
+                clearInterval(detectInterval);
+                detectInterval = null;
+            }
+            if (videoStream) {
+                videoStream.getTracks().forEach(track => track.stop());
+                videoStream = null;
+            }
+            if (video) video.srcObject = null;
+
+            if (laser) laser.hidden = true;
+            document.getElementById('camera-frame').classList.remove('scanning');
+            if (placeholder) {
+                placeholder.hidden = false;
+                placeholder.style.opacity = '1';
+            }
+            
+            btnStop.hidden = true;
+            btnStart.hidden = false;
+            statusText.textContent = "Camera offline. Click above to launch AI scanner.";
+            
+            // Stop game if active
+            if (gameActive) {
+                endGame();
+            }
+        }
+
+        function startDetectionLoop() {
+            if (detectInterval) clearInterval(detectInterval);
+
+            detectInterval = setInterval(async () => {
+                if (!isScanning || !video || video.paused || video.ended) return;
+
+                const displaySize = { width: video.clientWidth || 640, height: video.clientHeight || 480 };
+                if (canvas.width !== displaySize.width || canvas.height !== displaySize.height) {
+                    faceapi.matchDimensions(canvas, displaySize);
+                }
+
+                try {
+                    const detections = await faceapi.detectSingleFace(
+                        video, 
+                        new faceapi.TinyFaceDetectorOptions({ inputSize: 224, scoreThreshold: 0.5 })
+                    ).withFaceExpressions();
+
+                    const ctx = canvas.getContext('2d');
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    if (detections) {
+                        const resizedDetections = faceapi.resizeResults(detections, displaySize);
+                        const box = resizedDetections.detection.box;
+
+                        // Draw futuristic cyan bounding box around face
+                        ctx.strokeStyle = '#00F2FE';
+                        ctx.lineWidth = 3;
+                        ctx.shadowColor = '#00F2FE';
+                        ctx.shadowBlur = 12;
+                        ctx.strokeRect(box.x, box.y, box.width, box.height);
+                        ctx.shadowBlur = 0;
+
+                        // Draw corner brackets for tech aesthetic
+                        const len = Math.min(box.width, box.height) * 0.2;
+                        ctx.strokeStyle = '#fff';
+                        ctx.lineWidth = 4;
+                        // Top-left
+                        ctx.beginPath(); ctx.moveTo(box.x, box.y + len); ctx.lineTo(box.x, box.y); ctx.lineTo(box.x + len, box.y); ctx.stroke();
+                        // Top-right
+                        ctx.beginPath(); ctx.moveTo(box.x + box.width - len, box.y); ctx.lineTo(box.x + box.width, box.y); ctx.lineTo(box.x + box.width, box.y + len); ctx.stroke();
+                        // Bottom-left
+                        ctx.beginPath(); ctx.moveTo(box.x, box.y + box.height - len); ctx.lineTo(box.x, box.y + box.height); ctx.lineTo(box.x + len, box.y + box.height); ctx.stroke();
+                        // Bottom-right
+                        ctx.beginPath(); ctx.moveTo(box.x + box.width - len, box.y + box.height); ctx.lineTo(box.x + box.width, box.y + box.height); ctx.lineTo(box.x + box.width, box.y + box.height - len); ctx.stroke();
+
+                        // Process expressions
+                        const expressions = detections.expressions;
+                        updateEmotionBars(expressions);
+                        updateAICommentary(expressions);
+
+                        if (gameActive) {
+                            checkGameProgress(expressions);
+                        }
+                    } else {
+                        statusText.textContent = "🔍 Looking for face in frame...";
+                    }
+                } catch (e) {
+                    console.error("[AI Loop Error]", e);
+                }
+            }, 200); // 5 FPS
+        }
+
+        function updateEmotionBars(expressions) {
+            let dominant = 'neutral';
+            let maxScore = 0;
+
+            const targets = ['happy', 'surprised', 'neutral', 'angry', 'sad'];
+            targets.forEach(emo => {
+                const val = expressions[emo] || 0;
+                if (val > maxScore) {
+                    maxScore = val;
+                    dominant = emo;
+                }
+                const pct = Math.round(val * 100);
+                const barEl = document.getElementById(`bar-${emo}`);
+                const scoreEl = document.getElementById(`score-${emo}`);
+                if (barEl) barEl.style.width = `${pct}%`;
+                if (scoreEl) scoreEl.textContent = `${pct}%`;
+            });
+
+            if (statusText && isScanning) {
+                statusText.textContent = `✅ AI Tracking Active | Dominant: ${dominant.toUpperCase()} (${Math.round(maxScore * 100)}%)`;
+            }
+        }
+
+        let lastCommentaryEmotion = null;
+        function updateAICommentary(expressions) {
+            let dominant = 'neutral';
+            let maxScore = 0;
+
+            Object.keys(expressions).forEach(emo => {
+                if (expressions[emo] > maxScore) {
+                    maxScore = expressions[emo];
+                    dominant = emo;
+                }
+            });
+
+            // Only update commentary if confidence > 50% and emotion changed
+            if (maxScore > 0.5 && dominant !== lastCommentaryEmotion && commentaryMap[dominant]) {
+                lastCommentaryEmotion = dominant;
+                const info = commentaryMap[dominant];
+                if (domEmotion) domEmotion.textContent = info.title;
+                if (commentaryText) commentaryText.textContent = info.text;
+            }
+        }
+
+        /* --- THE EXPRESSION CHALLENGE GAME MODE --- */
+        if (btnStartGame) {
+            btnStartGame.addEventListener('click', () => {
+                if (!isScanning) {
+                    showToast("⚠️ Please start the camera first!");
+                    // Trigger camera start
+                    btnStart.click();
+                    return;
+                }
+                if (!gameActive) {
+                    startNewGame();
+                } else {
+                    endGame();
+                }
+            });
+        }
+
+        function startNewGame() {
+            gameActive = true;
+            gameScore = 0;
+            gameStreak = 0;
+            gameTimer = 20;
+            if (scoreVal) scoreVal.textContent = "0";
+            if (streakVal) streakVal.textContent = "0🔥";
+            if (timerVal) timerVal.textContent = "20s";
+            
+            btnStartGame.innerHTML = '<span>⏹️ End Challenge</span>';
+            btnStartGame.style.background = 'rgba(255, 80, 80, 0.2)';
+            btnStartGame.style.color = '#ff6b6b';
+
+            showToast("🎮 Expression Challenge Started!");
+            pickNextTarget();
+
+            if (gameTimerInterval) clearInterval(gameTimerInterval);
+            gameTimerInterval = setInterval(() => {
+                gameTimer--;
+                if (timerVal) timerVal.textContent = `${gameTimer}s`;
+                if (gameTimer <= 0) {
+                    endGame(true);
+                }
+            }, 1000);
+        }
+
+        function pickNextTarget() {
+            const available = emotionsList.filter(e => e !== currentTarget);
+            currentTarget = available[Math.floor(Math.random() * available.length)];
+            const emoji = emojiMap[currentTarget] || '';
+            if (targetPrompt) targetPrompt.textContent = `Make a ${currentTarget.toUpperCase()} ${emoji} face!`;
+            if (gameInstructions) gameInstructions.textContent = `Quick! Show your best ${currentTarget.toUpperCase()} expression to the camera before time runs out!`;
+        }
+
+        function checkGameProgress(expressions) {
+            if (!currentTarget) return;
+            const currentScore = expressions[currentTarget] || 0;
+
+            // If user matches target expression with > 70% confidence
+            if (currentScore > 0.70) {
+                gameScore += 100 + (gameStreak * 20);
+                gameStreak++;
+                gameTimer += 3; // Bonus time!
+
+                if (scoreVal) scoreVal.textContent = gameScore;
+                if (streakVal) streakVal.textContent = `${gameStreak}🔥`;
+                if (timerVal) timerVal.textContent = `${gameTimer}s`;
+
+                showConfetti();
+                showToast(`🎉 Awesome ${currentTarget.toUpperCase()} face! +100 Points!`);
+                pickNextTarget();
+            }
+        }
+
+        function endGame(timeOut = false) {
+            gameActive = false;
+            if (gameTimerInterval) clearInterval(gameTimerInterval);
+            gameTimerInterval = null;
+            currentTarget = null;
+
+            if (btnStartGame) {
+                btnStartGame.innerHTML = '<span>🏁 Start Challenge!</span>';
+                btnStartGame.style.background = '';
+                btnStartGame.style.color = '';
+            }
+
+            if (timeOut) {
+                if (targetPrompt) targetPrompt.textContent = `⏰ Time's Up! Final Score: ${gameScore}`;
+                if (gameInstructions) gameInstructions.textContent = `You achieved a streak of ${gameStreak}! Click below to try again and beat your high score!`;
+                showToast(`🏁 Challenge Ended! Final Score: ${gameScore}`);
+            } else {
+                if (targetPrompt) targetPrompt.textContent = "Ready to Play?";
+                if (gameInstructions) gameInstructions.textContent = "Test your facial acting skills against our AI! Match the prompted emotions before the timer runs out to score points.";
+            }
+        }
+
+        function showConfetti() {
+            const panel = document.getElementById('panel-mode-game') || document.body;
+            const colors = ['#00F2FE', '#4FACFE', '#88B04B', '#EAD6B1', '#ff4b2b', '#ffeb3b'];
+            for (let i = 0; i < 30; i++) {
+                const conf = document.createElement('div');
+                conf.className = 'confetti-piece';
+                conf.style.left = `${Math.random() * 80 + 10}%`;
+                conf.style.top = '10%';
+                conf.style.background = colors[Math.floor(Math.random() * colors.length)];
+                conf.style.animationDelay = `${Math.random() * 0.3}s`;
+                panel.appendChild(conf);
+                setTimeout(() => conf.remove(), 2500);
+            }
+        }
+    }
+
 });
+

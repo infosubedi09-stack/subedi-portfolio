@@ -193,16 +193,28 @@ h6 {
     pointer-events: auto;
 }
 
+.desktop-right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 0 auto;
+    max-width: 950px;
+    height: 100%;
+    overflow-y: auto;
+    padding-bottom: 2rem;
+    padding-right: 0.5rem;
+    pointer-events: auto;
+}
+
 .desktop-profile-widget {
     display: grid;
     grid-template-columns: 1.25fr 0.75fr;
     align-items: center;
     gap: 2.5rem;
-    margin: 0 auto;
-    max-width: 950px;
-    height: 100%;
+    width: 100%;
+    height: auto;
     color: var(--text-primary);
-    padding-bottom: 2rem;
+    padding-bottom: 0;
     padding-right: 0;
     pointer-events: none;
 }
@@ -2636,4 +2648,238 @@ h6 {
     background: rgba(136, 176, 75, 0.15);
     color: #88B04B;
     border: 1px solid rgba(136, 176, 75, 0.4);
+}
+
+/* ==========================================================================
+   AI MOOD GAME & EXPRESSION SCANNER WIDGET STYLES
+   ========================================================================== */
+.ai-desktop-widget-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.0rem;
+    padding: 1.25rem;
+    border-radius: var(--radius-lg);
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    transition: all var(--transition-normal);
+    width: 100%;
+    margin-top: 0.25rem;
+}
+
+.ai-desktop-widget-card:hover {
+    border-color: rgba(0, 242, 254, 0.4);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
+.ai-widget-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.ai-mini-widget {
+    padding: 1.1rem 1.35rem;
+    border-radius: var(--radius-lg);
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    width: 100%;
+    margin-top: 0.25rem;
+    pointer-events: auto;
+}
+
+.ai-mini-widget:hover {
+    transform: translateY(-4px);
+    border-color: #00F2FE;
+    box-shadow: 0 14px 35px rgba(0, 242, 254, 0.28);
+}
+
+.ai-mini-widget:active {
+    transform: translateY(-1px);
+}
+
+.grid-2-window {
+    display: grid;
+    grid-template-columns: 1.05fr 1.15fr;
+    gap: 1.5rem;
+    align-items: flex-start;
+    width: 100%;
+}
+
+@media (max-width: 850px) {
+    .grid-2-window {
+        grid-template-columns: 1fr;
+    }
+}
+
+.grid-2-widget {
+    display: grid;
+    grid-template-columns: 1.0fr 1.1fr;
+    gap: 1.25rem;
+    align-items: flex-start;
+}
+
+.ai-widget-camera-section,
+.ai-widget-interactive-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+@media (max-width: 850px) {
+    .grid-2-widget {
+        grid-template-columns: 1fr;
+    }
+}
+
+.camera-viewport-frame {
+    position: relative;
+    width: 100%;
+    height: 310px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.7);
+}
+
+.camera-viewport-frame.scanning {
+    border-color: #00F2FE;
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.25), inset 0 0 20px rgba(0, 242, 254, 0.15);
+}
+
+#webcam-video, #webcam-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1); /* Mirror webcam view for intuitive user experience */
+    border-radius: var(--radius-lg);
+}
+
+#webcam-overlay {
+    pointer-events: none;
+    z-index: 2;
+}
+
+.scanning-laser {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #00F2FE, transparent);
+    box-shadow: 0 0 15px #00F2FE, 0 0 5px #fff;
+    z-index: 3;
+    animation: scanLaser 2.5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes scanLaser {
+    0% { top: 0%; opacity: 0.8; }
+    50% { top: 98%; opacity: 1; }
+    100% { top: 0%; opacity: 0.8; }
+}
+
+.camera-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10, 18, 12, 0.85);
+    color: var(--text-primary);
+    z-index: 4;
+    padding: 1.5rem;
+    backdrop-filter: blur(8px);
+    transition: opacity var(--transition-normal);
+}
+
+.ai-insight-card {
+    padding: 1.25rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    transition: all var(--transition-normal);
+}
+
+.ai-insight-card:hover {
+    border-color: rgba(234, 214, 177, 0.4);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.emotion-meters-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+}
+
+.emotion-meter-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 0.82rem;
+}
+
+.emotion-label-row {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.emotion-bar-bg {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.light-theme .emotion-bar-bg {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.emotion-bar-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bar-happy { background: #00F2FE; box-shadow: 0 0 10px rgba(0, 242, 254, 0.5); }
+.bar-surprised { background: #b86bff; box-shadow: 0 0 10px rgba(184, 107, 255, 0.5); }
+.bar-neutral { background: #EAD6B1; box-shadow: 0 0 10px rgba(234, 214, 177, 0.5); }
+.bar-angry { background: #ff4b2b; box-shadow: 0 0 10px rgba(255, 75, 43, 0.5); }
+.bar-sad { background: #4facfe; box-shadow: 0 0 10px rgba(79, 172, 254, 0.5); }
+
+/* Confetti Celebration Effects */
+@keyframes confettiFall {
+    0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(350px) rotate(720deg); opacity: 0; }
+}
+
+.confetti-piece {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 100;
+    animation: confettiFall 2.5s ease-out forwards;
 }
