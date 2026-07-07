@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Setup Desktop Icon Launchers
-        const shortcuts = document.querySelectorAll('.desktop-shortcut');
+        const shortcuts = document.querySelectorAll('.desktop-shortcut, .ai-launcher-card');
         shortcuts.forEach(icon => {
             icon.addEventListener('click', () => {
                 const winId = icon.getAttribute('data-window');
@@ -315,28 +315,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function openWindowById(winId, triggerToast = true) {
-        if (winId === 'aigame-window') {
-            if (window.innerWidth > 900) {
-                const desktopWidget = document.getElementById('ai-desktop-widget');
-                if (desktopWidget) {
-                    desktopWidget.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    desktopWidget.style.boxShadow = '0 0 35px #00F2FE';
-                    desktopWidget.style.borderColor = '#00F2FE';
-                    setTimeout(() => {
-                        desktopWidget.style.boxShadow = '';
-                        desktopWidget.style.borderColor = '';
-                    }, 1500);
-                    return;
-                }
-            } else {
-                const scannerContent = document.getElementById('ai-scanner-content');
-                const winBody = document.querySelector('#aigame-window .window-body');
-                if (scannerContent && winBody && !winBody.contains(scannerContent)) {
-                    winBody.appendChild(scannerContent);
-                }
-            }
-        }
-
         const win = document.getElementById(winId);
         if (!win) return;
 
@@ -369,14 +347,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function closeWindow(win) {
         win.setAttribute('hidden', '');
         win.classList.remove('active-focus-win');
-        
-        if (win.id === 'aigame-window') {
-            const scannerContent = document.getElementById('ai-scanner-content');
-            const desktopWidget = document.getElementById('ai-desktop-widget');
-            if (scannerContent && desktopWidget && !desktopWidget.contains(scannerContent)) {
-                desktopWidget.appendChild(scannerContent);
-            }
-        }
         
         // Turn off indicator dot in taskbar
         const winId = win.id;
@@ -1364,20 +1334,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => conf.remove(), 2500);
             }
         }
-
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 900) {
-                const scannerContent = document.getElementById('ai-scanner-content');
-                const desktopWidget = document.getElementById('ai-desktop-widget');
-                const win = document.getElementById('aigame-window');
-                if (scannerContent && desktopWidget && !desktopWidget.contains(scannerContent)) {
-                    desktopWidget.appendChild(scannerContent);
-                    if (win && !win.hasAttribute('hidden')) {
-                        closeWindow(win);
-                    }
-                }
-            }
-        });
     }
 
 });
