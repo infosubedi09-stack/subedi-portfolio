@@ -2686,34 +2686,16 @@ h6 {
     display: none !important;
 }
 
-.ai-mini-widget {
-    padding: 1.1rem 1.35rem;
-    border-radius: var(--radius-lg);
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
-    cursor: pointer;
-    transition: all var(--transition-normal);
+.ai-desktop-widget {
     width: 100%;
-    margin-top: 0.25rem;
     pointer-events: auto;
-}
-
-.ai-mini-widget:hover {
-    transform: translateY(-4px);
-    border-color: #00F2FE;
-    box-shadow: 0 14px 35px rgba(0, 242, 254, 0.28);
-}
-
-.ai-mini-widget:active {
-    transform: translateY(-1px);
 }
 
 @media (max-width: 900px) {
     .mobile-only-shortcut {
         display: flex !important;
     }
-    .ai-mini-widget {
+    .ai-desktop-widget {
         display: none !important;
     }
     .desktop-right-column {
