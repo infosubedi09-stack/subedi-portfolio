@@ -1552,10 +1552,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 renderData.push(segment);
                 
-                let grassColor = color.grass = segment.color.grass;
-                let roadColor = color.road = segment.color.road;
-                let rumbleColor = color.rumble = segment.color.rumble;
-                let laneColor = color.lane = segment.color.lane;
+                let color = segment.color;
+                let grassColor = color.grass;
+                let roadColor = color.road;
+                let rumbleColor = color.rumble;
+                let laneColor = color.lane;
                 
                 // Headlight & Night time shading logic
                 if (isNightMode) {
