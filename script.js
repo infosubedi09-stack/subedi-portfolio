@@ -1350,170 +1350,340 @@ document.addEventListener('DOMContentLoaded', () => {
         const ctx = canvas.getContext('2d');
         let isNightMode = false;
         let isPlaying = false;
-        let carX = canvas.width / 2;
-        const carY = canvas.height - 80;
-        let roadOffset = 0;
-        let speed = 5;
-        let obstacles = [];
         let animationId;
+        
+        // Assets
+        const bgImg = new Image();
+        bgImg.src = 'images/bg_mountains.png';
+        const wheelImg = new Image();
+        wheelImg.src = 'images/steering-wheel.png';
+        const hornSound = new Audio('audio/mixkit-car-horn-718.wav');
+        
+        // Game State
+        let speed = 0;
+        let maxSpeed = 150;
+        let playerZ = 0;
+        let playerX = 0;
+        const segmentLength = 200;
+        const roadWidth = 2000;
+        const cameraDepth = 0.84;
+        const drawDistance = 300;
+        const segments = [];
+        const trackLength = 10000;
+        
+        // Build Track
+        function buildTrack() {
+            segments.length = 0;
+            for(let n = 0; n < trackLength; n++) {
+                let curve = 0;
+                let y = 0;
+                // Add some curves and hills (Nepali roads are winding!)
+                if(n > 100 && n < 300) curve = 2;
+                if(n > 400 && n < 600) curve = -2;
+                if(n > 700 && n < 1200) y = Math.sin(n / 40.0) * 1500;
+                if(n > 1500 && n < 2000) curve = 3;
+                
+                // Add trees/houses
+                let sprite = null;
+                if(n % 20 === 0) sprite = { type: 'tree', offset: -1.5 };
+                if(n % 30 === 0) sprite = { type: 'tree', offset: 1.5 };
+                if(n % 100 === 0) sprite = { type: 'house', offset: -2.0 };
+                
+                segments.push({
+                    index: n,
+                    p1: { world: { z: n * segmentLength }, camera: {}, screen: {} },
+                    p2: { world: { z: (n + 1) * segmentLength }, camera: {}, screen: {} },
+                    curve: curve,
+                    y: y,
+                    sprite: sprite,
+                    color: Math.floor(n / 3) % 2 ? { road: '#6B6B6B', grass: '#10AA10', rumble: '#555555', lane: '#CCCCCC' } 
+                                                 : { road: '#6B6B6B', grass: '#009A00', rumble: '#FFFFFF', lane: '#6B6B6B' }
+                });
+            }
+        }
+        buildTrack();
         
         // Handle Day/Night Toggle
         toggle.addEventListener('change', (e) => {
             isNightMode = !e.target.checked;
-            if (isNightMode) {
-                container.classList.add('night-mode');
-            } else {
-                container.classList.remove('night-mode');
-            }
-            if (!isPlaying) {
-                // re-render static scene on toggle if not playing
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                drawRoad();
-                drawCar();
-                drawNightLighting();
-            }
+            if (isNightMode) container.classList.add('night-mode');
+            else container.classList.remove('night-mode');
+            if (!isPlaying) render(); // Re-render static scene
         });
         
-        // Game Controls
-        let keys = { ArrowLeft: false, ArrowRight: false };
+        // Controls
+        let keys = { ArrowLeft: false, ArrowRight: false, ArrowUp: false, ArrowDown: false, h: false };
         window.addEventListener('keydown', (e) => {
-            if (keys.hasOwnProperty(e.key)) {
-                keys[e.key] = true;
-                if(isPlaying) e.preventDefault();
+            const key = e.key.toLowerCase();
+            if (keys.hasOwnProperty(e.key) || key === 'h') {
+                if (key === 'h') {
+                    keys['h'] = true;
+                    hornSound.currentTime = 0;
+                    hornSound.play();
+                } else {
+                    keys[e.key] = true;
+                    if(isPlaying) e.preventDefault();
+                }
             }
         });
         window.addEventListener('keyup', (e) => {
-            if (keys.hasOwnProperty(e.key)) keys[e.key] = false;
+            const key = e.key.toLowerCase();
+            if (keys.hasOwnProperty(e.key) || key === 'h') {
+                if (key === 'h') keys['h'] = false;
+                else keys[e.key] = false;
+            }
         });
         
         startBtn.addEventListener('click', () => {
             if (!isPlaying) {
                 isPlaying = true;
-                obstacles = [];
-                carX = canvas.width / 2;
-                startBtn.textContent = "Playing...";
+                playerZ = 0;
+                speed = 0;
+                playerX = 0;
+                startBtn.textContent = "Playing (Arrows to Drive, H to Honk)";
                 gameLoop();
             }
         });
         
-        function drawCar() {
-            ctx.fillStyle = '#C0392B';
-            ctx.fillRect(carX - 20, carY, 40, 60);
-            // Wheels
-            ctx.fillStyle = '#2c3e50';
-            ctx.fillRect(carX - 25, carY + 10, 5, 15);
-            ctx.fillRect(carX + 20, carY + 10, 5, 15);
-            ctx.fillRect(carX - 25, carY + 40, 5, 15);
-            ctx.fillRect(carX + 20, carY + 40, 5, 15);
+        function project(p, cameraX, cameraY, cameraZ, cameraDepth, width, height, roadWidth) {
+            p.camera.x = (p.world.x || 0) - cameraX;
+            p.camera.y = (p.world.y || 0) - cameraY;
+            p.camera.z = (p.world.z || 0) - cameraZ;
+            p.screen.scale = cameraDepth / (p.camera.z || 1); // prevent div by zero
+            p.screen.x = Math.round((width / 2) + (p.screen.scale * p.camera.x * width / 2));
+            p.screen.y = Math.round((height / 2) - (p.screen.scale * p.camera.y * height / 2));
+            p.screen.w = Math.round((p.screen.scale * roadWidth * width / 2));
         }
         
-        function drawRoad() {
-            // Road background
-            ctx.fillStyle = isNightMode ? '#222' : '#7f8c8d';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        function drawPolygon(ctx, x1, y1, x2, y2, x3, y3, x4, y4, color) {
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.lineTo(x3, y3);
+            ctx.lineTo(x4, y4);
+            ctx.fill();
+        }
+        
+        function drawSprite(ctx, type, screenX, screenY, scale) {
+            if (type === 'tree') {
+                const w = 600 * scale;
+                const h = 800 * scale;
+                const sx = screenX - w / 2;
+                const sy = screenY - h;
+                
+                // Draw trunk
+                ctx.fillStyle = isNightMode ? '#1e1410' : '#5D4037';
+                ctx.fillRect(sx + w*0.4, sy + h*0.7, w*0.2, h*0.3);
+                // Draw leaves
+                ctx.fillStyle = isNightMode ? '#0b240f' : '#2E7D32';
+                ctx.beginPath(); ctx.moveTo(sx + w*0.5, sy); ctx.lineTo(sx + w, sy + h*0.75); ctx.lineTo(sx, sy + h*0.75); ctx.fill();
+                ctx.fillStyle = isNightMode ? '#113511' : '#43A047';
+                ctx.beginPath(); ctx.moveTo(sx + w*0.5, sy + h*0.1); ctx.lineTo(sx + w*0.9, sy + h*0.5); ctx.lineTo(sx + w*0.1, sy + h*0.5); ctx.fill();
+            } else if (type === 'house') {
+                const w = 800 * scale;
+                const h = 600 * scale;
+                const sx = screenX - w / 2;
+                const sy = screenY - h;
+                
+                // Draw base
+                ctx.fillStyle = isNightMode ? '#2a201c' : '#D7CCC8';
+                ctx.fillRect(sx + w*0.1, sy + h*0.4, w*0.8, h*0.6);
+                // Draw roof
+                ctx.fillStyle = isNightMode ? '#1e1410' : '#8D6E63';
+                ctx.beginPath(); ctx.moveTo(sx + w*0.5, sy); ctx.lineTo(sx + w, sy + h*0.4); ctx.lineTo(sx, sy + h*0.4); ctx.fill();
+                // Draw window (illuminated at night!)
+                if (isNightMode) {
+                    ctx.fillStyle = '#FFF59D'; // Bright yellow light
+                    // glow
+                    ctx.shadowColor = '#FFF59D';
+                    ctx.shadowBlur = 15 * scale;
+                } else {
+                    ctx.fillStyle = '#81D4FA'; // Glass reflection
+                }
+                ctx.fillRect(sx + w*0.3, sy + h*0.55, w*0.15, h*0.2);
+                ctx.shadowBlur = 0; // reset
+            }
+        }
+        
+        function render() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Lane markings
-            ctx.fillStyle = isNightMode ? '#555' : '#fff';
-            for (let i = -100; i < canvas.height; i += 40) {
-                ctx.fillRect(canvas.width / 2 - 5, i + (roadOffset % 40), 10, 20);
+            // Draw Sky/Mountains
+            if (bgImg.complete && bgImg.naturalWidth > 0) {
+                // simple parallax
+                const skyOffset = -(playerX * 100) % canvas.width;
+                ctx.drawImage(bgImg, skyOffset, 0, canvas.width, canvas.height / 2 + 50);
+                if(skyOffset > 0) ctx.drawImage(bgImg, skyOffset - canvas.width, 0, canvas.width, canvas.height / 2 + 50);
+                if(skyOffset < 0) ctx.drawImage(bgImg, skyOffset + canvas.width, 0, canvas.width, canvas.height / 2 + 50);
+            } else {
+                ctx.fillStyle = isNightMode ? '#0b0c10' : '#87CEEB';
+                ctx.fillRect(0, 0, canvas.width, canvas.height / 2);
+            }
+            
+            // Apply night tint over sky/mountains
+            if (isNightMode) {
+                ctx.fillStyle = 'rgba(10, 20, 35, 0.85)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height / 2 + 50);
+            }
+            
+            let baseSegment = segments[Math.floor(playerZ / segmentLength) % trackLength];
+            let cameraX = playerX * roadWidth;
+            let cameraY = 1000 + (baseSegment.y || 0);
+            let maxy = canvas.height;
+            let x = 0;
+            let dx = - (baseSegment.curve * (playerZ % segmentLength) / segmentLength);
+            
+            const renderData = [];
+            
+            for (let n = 0; n < drawDistance; n++) {
+                let segment = segments[(baseSegment.index + n) % trackLength];
+                segment.p1.world.y = segment.y;
+                segment.p2.world.y = segment.y;
+                
+                project(segment.p1, cameraX - x, cameraY, playerZ - (n === 0 ? 1 : 0), cameraDepth, canvas.width, canvas.height, roadWidth);
+                project(segment.p2, cameraX - x - dx, cameraY, playerZ, cameraDepth, canvas.width, canvas.height, roadWidth);
+                
+                x += dx;
+                dx += segment.curve;
+                
+                if (segment.p1.camera.z <= cameraDepth || segment.p2.screen.y >= maxy) continue;
+                maxy = segment.p2.screen.y;
+                
+                renderData.push(segment);
+                
+                let grassColor = color.grass = segment.color.grass;
+                let roadColor = color.road = segment.color.road;
+                let rumbleColor = color.rumble = segment.color.rumble;
+                let laneColor = color.lane = segment.color.lane;
+                
+                // Headlight & Night time shading logic
+                if (isNightMode) {
+                    // Darken colors based on distance
+                    let distFactor = 1 - (n / drawDistance);
+                    let fade = Math.max(0.1, distFactor * 0.4); // Very dark ambient
+                    
+                    grassColor = n % 2 ? `rgba(15, 32, 15, ${fade})` : `rgba(11, 22, 11, ${fade})`;
+                    roadColor = `rgba(34, 34, 34, ${fade})`;
+                    rumbleColor = n % 2 ? `rgba(102, 102, 102, ${fade})` : `rgba(51, 51, 51, ${fade})`;
+                    laneColor = `rgba(85, 85, 85, ${fade})`;
+                    
+                    // Headlight effect: brightly illuminate the first 40 segments
+                    if (n < 45) {
+                        let lightFactor = Math.max(0, 1 - (n / 45)); // 1 near, 0 far
+                        let rC = Math.floor(34 + 100 * lightFactor);
+                        roadColor = `rgb(${rC}, ${rC}, ${rC})`;
+                        
+                        let lC = Math.floor(85 + 170 * lightFactor);
+                        laneColor = `rgb(${lC}, ${lC}, ${lC})`;
+                        
+                        if (segment.color.rumble === '#FFFFFF') {
+                            rumbleColor = `rgb(${Math.floor(255*lightFactor + 51)}, ${Math.floor(255*lightFactor + 51)}, ${Math.floor(255*lightFactor + 51)})`;
+                        } else {
+                            let rmC = Math.floor(85 + 85 * lightFactor);
+                            rumbleColor = `rgb(${rmC}, ${rmC}, ${rmC})`;
+                        }
+                        
+                        grassColor = n % 2 ? `rgb(${16 + 20*lightFactor}, ${170*lightFactor}, ${16 + 20*lightFactor})` 
+                                           : `rgb(${0}, ${154*lightFactor}, ${0})`;
+                    }
+                }
+                
+                // Base grass background for segment
+                ctx.fillStyle = grassColor;
+                ctx.fillRect(0, segment.p2.screen.y, canvas.width, segment.p1.screen.y - segment.p2.screen.y + 1);
+                
+                let p1 = segment.p1.screen;
+                let p2 = segment.p2.screen;
+                
+                // Draw Road
+                drawPolygon(ctx, p1.x - p1.w, p1.y, p1.x + p1.w, p1.y, p2.x + p2.w, p2.y, p2.x - p2.w, p2.y, roadColor);
+                
+                // Draw Rumble strips
+                let r1 = p1.w / 5;
+                let r2 = p2.w / 5;
+                drawPolygon(ctx, p1.x - p1.w - r1, p1.y, p1.x - p1.w, p1.y, p2.x - p2.w, p2.y, p2.x - p2.w - r2, p2.y, rumbleColor);
+                drawPolygon(ctx, p1.x + p1.w, p1.y, p1.x + p1.w + r1, p1.y, p2.x + p2.w + r2, p2.y, p2.x + p2.w, p2.y, rumbleColor);
+                
+                // Draw Lane
+                if (color.lane !== color.road) {
+                    let l1 = p1.w / 30;
+                    let l2 = p2.w / 30;
+                    drawPolygon(ctx, p1.x - l1, p1.y, p1.x + l1, p1.y, p2.x + l2, p2.y, p2.x - l2, p2.y, laneColor);
+                }
+            }
+            
+            // Draw sprites (back to front)
+            for (let i = renderData.length - 1; i >= 0; i--) {
+                let segment = renderData[i];
+                if (segment.sprite) {
+                    let spriteX = segment.p1.screen.x + segment.p1.screen.scale * segment.sprite.offset * roadWidth * canvas.width / 2;
+                    drawSprite(ctx, segment.sprite.type, spriteX, segment.p1.screen.y, segment.p1.screen.scale);
+                }
+            }
+            
+            // Draw Steering Wheel / Dashboard
+            let wheelRot = 0;
+            if (keys.ArrowLeft) wheelRot = -0.4;
+            if (keys.ArrowRight) wheelRot = 0.4;
+            
+            if (wheelImg.complete && wheelImg.naturalWidth > 0) {
+                ctx.save();
+                ctx.translate(canvas.width / 2, canvas.height);
+                ctx.rotate(wheelRot);
+                // Scale wheel to fit nicely
+                const wSize = 500;
+                ctx.drawImage(wheelImg, -wSize/2, -wSize/2 + 20, wSize, wSize);
+                ctx.restore();
+            } else {
+                // Fallback Dashboard
+                ctx.fillStyle = '#111';
+                ctx.fillRect(0, canvas.height - 80, canvas.width, 80);
+                // Fallback wheel
+                ctx.save();
+                ctx.translate(canvas.width / 2, canvas.height - 40);
+                ctx.rotate(wheelRot);
+                ctx.beginPath(); ctx.arc(0, 0, 60, 0, Math.PI * 2);
+                ctx.lineWidth = 15; ctx.strokeStyle = '#444'; ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(-60, 0); ctx.lineTo(60, 0); ctx.stroke();
+                ctx.restore();
             }
         }
         
         function updateLogic() {
-            if (keys.ArrowLeft && carX > 20) carX -= 5;
-            if (keys.ArrowRight && carX < canvas.width - 20) carX += 5;
+            // Speed control
+            if (keys.ArrowUp) speed += 2;
+            else if (keys.ArrowDown) speed -= 3;
+            else speed -= 1; // friction
             
-            roadOffset += speed;
+            speed = Math.max(0, Math.min(speed, maxSpeed));
+            playerZ += speed;
             
-            // Spawn obstacle
-            if (Math.random() < 0.03) {
-                const obsX = 20 + Math.random() * (canvas.width - 40);
-                obstacles.push({ x: obsX, y: -50, width: 30, height: 30 });
-            }
-            
-            // Update obstacles & collision
-            for (let i = 0; i < obstacles.length; i++) {
-                obstacles[i].y += speed;
+            // Steering
+            if (speed > 0) {
+                if (keys.ArrowLeft) playerX -= 0.05 * (speed / maxSpeed);
+                if (keys.ArrowRight) playerX += 0.05 * (speed / maxSpeed);
                 
-                // Collision
-                if (
-                    carX - 20 < obstacles[i].x + obstacles[i].width &&
-                    carX + 20 > obstacles[i].x &&
-                    carY < obstacles[i].y + obstacles[i].height &&
-                    carY + 60 > obstacles[i].y
-                ) {
-                    isPlaying = false;
-                    startBtn.textContent = "Game Over - Restart";
-                }
+                // Centering force based on curve
+                let baseSegment = segments[Math.floor(playerZ / segmentLength) % trackLength];
+                playerX -= (speed / maxSpeed) * baseSegment.curve * 0.02;
             }
             
-            // Remove off-screen obstacles
-            obstacles = obstacles.filter(obs => obs.y < canvas.height);
-        }
-        
-        function drawNightLighting() {
-            if (!isNightMode) return;
-            
-            // Draw dark overlay
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.9)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            // Cut out headlights
-            ctx.globalCompositeOperation = 'destination-out';
-            
-            // Left headlight
-            let gradientLeft = ctx.createRadialGradient(carX - 15, carY, 10, carX - 15, carY - 200, 150);
-            gradientLeft.addColorStop(0, 'rgba(255, 255, 255, 1)');
-            gradientLeft.addColorStop(1, 'rgba(255, 255, 255, 0)');
-            
-            ctx.fillStyle = gradientLeft;
-            ctx.beginPath();
-            ctx.moveTo(carX - 25, carY);
-            ctx.lineTo(carX - 120, carY - 300);
-            ctx.lineTo(carX + 60, carY - 300);
-            ctx.lineTo(carX - 5, carY);
-            ctx.fill();
-            
-            // Right headlight
-            let gradientRight = ctx.createRadialGradient(carX + 15, carY, 10, carX + 15, carY - 200, 150);
-            gradientRight.addColorStop(0, 'rgba(255, 255, 255, 1)');
-            gradientRight.addColorStop(1, 'rgba(255, 255, 255, 0)');
-            
-            ctx.fillStyle = gradientRight;
-            ctx.beginPath();
-            ctx.moveTo(carX + 5, carY);
-            ctx.lineTo(carX - 60, carY - 300);
-            ctx.lineTo(carX + 120, carY - 300);
-            ctx.lineTo(carX + 25, carY);
-            ctx.fill();
-            
-            ctx.globalCompositeOperation = 'source-over';
+            // Off road deceleration (bumpy grass)
+            if (Math.abs(playerX) > 1.2) {
+                speed = Math.max(10, speed - 5);
+            }
         }
         
         function gameLoop() {
             if (!isPlaying) return;
-            
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
             updateLogic();
-            drawRoad();
-            
-            // Draw obstacles
-            ctx.fillStyle = '#f39c12';
-            obstacles.forEach(obs => {
-                ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
-            });
-            
-            drawCar();
-            drawNightLighting();
-            
+            render();
             animationId = requestAnimationFrame(gameLoop);
         }
         
-        // Initial render
-        drawRoad();
-        drawCar();
-        drawNightLighting();
+        // Setup initial scene immediately
+        setTimeout(render, 500); // Give images a moment to load
     }
 
 });
