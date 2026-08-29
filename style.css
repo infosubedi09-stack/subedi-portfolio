@@ -214,9 +214,31 @@ h6 {
     width: 100%;
     height: auto;
     color: var(--text-primary);
-    padding-bottom: 0;
-    padding-right: 0;
-    pointer-events: none;
+    padding: 3rem;
+    background: rgba(14, 26, 17, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 30px;
+    box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.7),
+        inset 0 1px 1px rgba(255, 255, 255, 0.15),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.5);
+    transform: perspective(1200px) rotateX(4deg) rotateY(-4deg);
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    pointer-events: auto;
+    position: relative;
+    z-index: 10;
+}
+
+.desktop-profile-widget:hover {
+    transform: perspective(1200px) rotateX(0deg) rotateY(0deg) translateY(-8px);
+    box-shadow: 
+        0 35px 60px -15px rgba(0, 0, 0, 0.8),
+        0 0 40px rgba(0, 242, 254, 0.15),
+        inset 0 1px 1px rgba(255, 255, 255, 0.25),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.5);
 }
 
 .widget-text-panel {
@@ -225,6 +247,12 @@ h6 {
     align-items: flex-start;
     pointer-events: auto;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    transform: translateZ(30px);
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.desktop-profile-widget:hover .widget-text-panel {
+    transform: translateZ(50px);
 }
 
 .widget-badge {
@@ -270,6 +298,12 @@ h6 {
     justify-content: center;
     align-items: center;
     pointer-events: auto;
+    transform: translateZ(40px);
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.desktop-profile-widget:hover .widget-photo-panel {
+    transform: translateZ(70px);
 }
 
 @keyframes avatarCirclePulse {
