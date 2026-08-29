@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSafely('OSPowerManagement', initOSPowerManagement);
     initSafely('VisitorCounter', initVisitorCounter);
     initSafely('AIFaceGame', initAIFaceGame);
+    initSafely('DrivingGame', initDrivingGame);
 
     /* ==========================================================================
        LIVE SYSTEM CLOCK
@@ -1334,6 +1335,185 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => conf.remove(), 2500);
             }
         }
+    }
+
+    /* ==========================================================================
+       DRIVING GAME LOGIC
+       ========================================================================== */
+    function initDrivingGame() {
+        const toggle = document.getElementById('driving-light-toggle');
+        const container = document.getElementById('driving-game-container');
+        const canvas = document.getElementById('driving-game-canvas');
+        const startBtn = document.getElementById('start-driving-game-btn');
+        if (!canvas) return;
+        
+        const ctx = canvas.getContext('2d');
+        let isNightMode = false;
+        let isPlaying = false;
+        let carX = canvas.width / 2;
+        const carY = canvas.height - 80;
+        let roadOffset = 0;
+        let speed = 5;
+        let obstacles = [];
+        let animationId;
+        
+        // Handle Day/Night Toggle
+        toggle.addEventListener('change', (e) => {
+            isNightMode = !e.target.checked;
+            if (isNightMode) {
+                container.classList.add('night-mode');
+            } else {
+                container.classList.remove('night-mode');
+            }
+            if (!isPlaying) {
+                // re-render static scene on toggle if not playing
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                drawRoad();
+                drawCar();
+                drawNightLighting();
+            }
+        });
+        
+        // Game Controls
+        let keys = { ArrowLeft: false, ArrowRight: false };
+        window.addEventListener('keydown', (e) => {
+            if (keys.hasOwnProperty(e.key)) {
+                keys[e.key] = true;
+                if(isPlaying) e.preventDefault();
+            }
+        });
+        window.addEventListener('keyup', (e) => {
+            if (keys.hasOwnProperty(e.key)) keys[e.key] = false;
+        });
+        
+        startBtn.addEventListener('click', () => {
+            if (!isPlaying) {
+                isPlaying = true;
+                obstacles = [];
+                carX = canvas.width / 2;
+                startBtn.textContent = "Playing...";
+                gameLoop();
+            }
+        });
+        
+        function drawCar() {
+            ctx.fillStyle = '#C0392B';
+            ctx.fillRect(carX - 20, carY, 40, 60);
+            // Wheels
+            ctx.fillStyle = '#2c3e50';
+            ctx.fillRect(carX - 25, carY + 10, 5, 15);
+            ctx.fillRect(carX + 20, carY + 10, 5, 15);
+            ctx.fillRect(carX - 25, carY + 40, 5, 15);
+            ctx.fillRect(carX + 20, carY + 40, 5, 15);
+        }
+        
+        function drawRoad() {
+            // Road background
+            ctx.fillStyle = isNightMode ? '#222' : '#7f8c8d';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Lane markings
+            ctx.fillStyle = isNightMode ? '#555' : '#fff';
+            for (let i = -100; i < canvas.height; i += 40) {
+                ctx.fillRect(canvas.width / 2 - 5, i + (roadOffset % 40), 10, 20);
+            }
+        }
+        
+        function updateLogic() {
+            if (keys.ArrowLeft && carX > 20) carX -= 5;
+            if (keys.ArrowRight && carX < canvas.width - 20) carX += 5;
+            
+            roadOffset += speed;
+            
+            // Spawn obstacle
+            if (Math.random() < 0.03) {
+                const obsX = 20 + Math.random() * (canvas.width - 40);
+                obstacles.push({ x: obsX, y: -50, width: 30, height: 30 });
+            }
+            
+            // Update obstacles & collision
+            for (let i = 0; i < obstacles.length; i++) {
+                obstacles[i].y += speed;
+                
+                // Collision
+                if (
+                    carX - 20 < obstacles[i].x + obstacles[i].width &&
+                    carX + 20 > obstacles[i].x &&
+                    carY < obstacles[i].y + obstacles[i].height &&
+                    carY + 60 > obstacles[i].y
+                ) {
+                    isPlaying = false;
+                    startBtn.textContent = "Game Over - Restart";
+                }
+            }
+            
+            // Remove off-screen obstacles
+            obstacles = obstacles.filter(obs => obs.y < canvas.height);
+        }
+        
+        function drawNightLighting() {
+            if (!isNightMode) return;
+            
+            // Draw dark overlay
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.9)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Cut out headlights
+            ctx.globalCompositeOperation = 'destination-out';
+            
+            // Left headlight
+            let gradientLeft = ctx.createRadialGradient(carX - 15, carY, 10, carX - 15, carY - 200, 150);
+            gradientLeft.addColorStop(0, 'rgba(255, 255, 255, 1)');
+            gradientLeft.addColorStop(1, 'rgba(255, 255, 255, 0)');
+            
+            ctx.fillStyle = gradientLeft;
+            ctx.beginPath();
+            ctx.moveTo(carX - 25, carY);
+            ctx.lineTo(carX - 120, carY - 300);
+            ctx.lineTo(carX + 60, carY - 300);
+            ctx.lineTo(carX - 5, carY);
+            ctx.fill();
+            
+            // Right headlight
+            let gradientRight = ctx.createRadialGradient(carX + 15, carY, 10, carX + 15, carY - 200, 150);
+            gradientRight.addColorStop(0, 'rgba(255, 255, 255, 1)');
+            gradientRight.addColorStop(1, 'rgba(255, 255, 255, 0)');
+            
+            ctx.fillStyle = gradientRight;
+            ctx.beginPath();
+            ctx.moveTo(carX + 5, carY);
+            ctx.lineTo(carX - 60, carY - 300);
+            ctx.lineTo(carX + 120, carY - 300);
+            ctx.lineTo(carX + 25, carY);
+            ctx.fill();
+            
+            ctx.globalCompositeOperation = 'source-over';
+        }
+        
+        function gameLoop() {
+            if (!isPlaying) return;
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            updateLogic();
+            drawRoad();
+            
+            // Draw obstacles
+            ctx.fillStyle = '#f39c12';
+            obstacles.forEach(obs => {
+                ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+            });
+            
+            drawCar();
+            drawNightLighting();
+            
+            animationId = requestAnimationFrame(gameLoop);
+        }
+        
+        // Initial render
+        drawRoad();
+        drawCar();
+        drawNightLighting();
     }
 
 });

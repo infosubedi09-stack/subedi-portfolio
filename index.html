@@ -125,6 +125,14 @@
                     <span style="background: #88B04B; color: #070D08; font-size: 0.65rem; font-weight: 800; padding: 0.15rem 0.45rem; border-radius: 10px; margin-top: 0.15rem; box-shadow: 0 0 10px rgba(136, 176, 75, 0.6); display: inline-block;">Fee: 2k / 3k</span>
                 </a>
 
+                <!-- Driving Game Icon -->
+                <button class="desktop-shortcut" data-window="driving-game-window" aria-label="Open Driving Game">
+                    <div class="shortcut-icon" style="background: linear-gradient(135deg, #FF6B6B, #C0392B); color: white; font-size: 1.4rem; display: flex; align-items: center; justify-content: center; border-radius: 12px; box-shadow: 0 0 15px rgba(255, 107, 107, 0.4);">
+                        🚗
+                    </div>
+                    <span class="shortcut-label" style="color: white; font-weight: 700;">Driving Game</span>
+                </button>
+
                 <!-- Mobile Only: AI Mood Game Icon at the end of shortcuts -->
                 <button class="desktop-shortcut mobile-only-shortcut" data-window="aigame-window" aria-label="Open AI Mood Game Program">
                     <div class="shortcut-icon" style="background: linear-gradient(135deg, #00F2FE, #4FACFE); color: #070D08; font-size: 1.4rem; display: flex; align-items: center; justify-content: center; border-radius: 12px; box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);">
@@ -169,6 +177,39 @@
 
         <!-- Desktop Windows Container -->
         <div class="desktop-windows" id="window-layer">
+
+            <!-- DRIVING GAME WINDOW -->
+            <div class="window glass-card" id="driving-game-window" role="dialog" aria-labelledby="driving-game-title"
+                style="top: 10%; left: 15%; width: 600px; height: 450px;" hidden>
+                <div class="window-header">
+                    <div class="window-title-area">
+                        <span style="margin-right: 6px;">🚗</span>
+                        <span id="driving-game-title" class="window-title-text">Driving Game</span>
+                    </div>
+                    <div class="window-controls">
+                        <button class="win-btn win-min" aria-label="Minimize Window" title="Minimize">&#9472;</button>
+                        <button class="win-btn win-max" aria-label="Maximize Window" title="Maximize">&#9633;</button>
+                        <button class="win-btn win-close" aria-label="Close Window" title="Close">&times;</button>
+                    </div>
+                </div>
+                <div class="window-body no-padding" style="display: flex; flex-direction: column; height: calc(100% - 38px); overflow: hidden; background: #E8E5DF; color: #333;">
+                    <div class="game-toolbar" style="padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.1);">
+                        <button id="start-driving-game-btn" class="btn btn-primary" style="padding: 5px 15px; border-radius: 4px; font-weight: bold; background: #333; color: white; border: none; cursor: pointer;">Start Game</button>
+                        
+                        <div class="light-toggle-container" style="display: flex; align-items: center; gap: 10px;">
+                            <span style="font-size: 14px; font-family: sans-serif;">Light:</span>
+                            <label class="switch">
+                                <input type="checkbox" id="driving-light-toggle" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div id="driving-game-container" class="day-mode" style="flex: 1; position: relative; overflow: hidden; transition: background 0.3s ease;">
+                        <canvas id="driving-game-canvas" width="600" height="371" style="display: block; width: 100%; height: 100%;"></canvas>
+                    </div>
+                </div>
+            </div>
 
             <!-- 0. THIS PC WINDOW -->
             <div class="window glass-card" id="thispc-window" role="dialog" aria-labelledby="thispc-title"
